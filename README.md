@@ -1,7 +1,12 @@
 # suits-renting-ecommerce-react
 
-# download the zip file
-# open in VScode
-# change the directory to react-app
-# Type and run "npm run dev" in the command line
-# open the localhost
+
+1. download the zip file
+
+2. open in VScode
+
+3. change the directory to react-app
+
+4. Type and run "npm run dev" in the command line
+
+5. open the localhost
