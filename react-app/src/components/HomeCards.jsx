@@ -1,102 +1,82 @@
-// import Card from "react-bootstrap/Card";
-// import Col from "react-bootstrap/Col";
-// import Row from "react-bootstrap/Row";
+import React from "react";
+import {
+  MDBCard,
+  MDBCardImage,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBRow,
+  MDBCol,
+} from "mdb-react-ui-kit";
 
-// function HomeCards() {
-//   const cardData = [
-//     {
-//       title: "Card 1",
-//       description: "This is the content for Card 1.",
-//       imageSrc: "/images/cards/1.jpg",
-//     },
-//     {
-//       title: "Card 2",
-//       description: "This is the content for Card 2.",
-//       imageSrc: "/images/cards/2.jpg",
-//     },
-//     {
-//       title: "Card 3",
-//       description: "This is the content for Card 3.",
-//       imageSrc: "/path/to/image3.jpg",
-//     },
-//     {
-//       title: "Card 4",
-//       description: "This is the content for Card 4.",
-//       imageSrc: "/path/to/image4.jpg",
-//     },
-//   ];
-
-//   return (
-//     <div style={{ marginTop: "45px" }} className="justify-content-center">
-//       <Row row-cols- xs={1} md={4}>
-//         {cardData.map((card, idx) => (
-//           <Col key={idx}>
-//             <Card style={{ width: "350px", height: "550px" }}>
-//               <Card.Img variant="top" src={card.imageSrc} />
-//               <Card.Body>
-//                 <Card.Title>{card.title}</Card.Title>
-//                 <Card.Text>{card.description}</Card.Text>
-//               </Card.Body>
-//             </Card>
-//           </Col>
-//         ))}
-//       </Row>
-//     </div>
-//   );
-// }
-
-function HomeCards() {
+export default function Homecards() {
   return (
-    <div style={{ marginTop: "45px" }} class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100  ">
-          <img src="/images/cards/1.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This content is a little bit
-              longer.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="..." class="card-img-top" alt="..." />+
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This card has supporting text below as a natural lead-in to
-              additional content.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="/images/cards/2.jpg" class="card-img-top" alt="..." />
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-              This is a wider card with supporting text below as a natural
-              lead-in to additional content. This card has even longer content
-              than the first to show that equal height action.
-            </p>
-          </div>
-          <div class="card-footer">
-            <small class="text-body-secondary">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div>
+    <div className="mb-7 ">
+      <MDBRow className="row-cols-6  g-4 d-flex justify-content-center">
+        <MDBCol>
+          <MDBCard className="h-100">
+            <MDBCardImage
+              src="https://mdbootstrap.com/img/new/standard/city/041.webp"
+              alt="..."
+              position="top"
+            />
+            <MDBCardBody>
+              <MDBCardTitle>Suites for Grooms and Bestmen</MDBCardTitle>
+              <MDBCardText>
+                Are you looking for a suit that will make you look stunning and
+                express your personal style to the fullest on your special day?
+                We have the answer!
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+        <MDBCol>
+          <MDBCard className="h-100">
+            <MDBCardImage
+              src="https://mdbootstrap.com/img/new/standard/city/042.webp"
+              alt="..."
+              position="top"
+            />
+            <MDBCardBody>
+              <MDBCardTitle>Card title</MDBCardTitle>
+              <MDBCardText>This is a short card.</MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+        <MDBCol>
+          <MDBCard className="h-100">
+            <MDBCardImage
+              src="https://mdbootstrap.com/img/new/standard/city/043.webp"
+              alt="..."
+              position="top"
+            />
+            <MDBCardBody>
+              <MDBCardTitle>Card title</MDBCardTitle>
+              <MDBCardText>
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content.
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+        <MDBCol>
+          <MDBCard className="h-100">
+            <MDBCardImage
+              src="https://mdbootstrap.com/img/new/standard/city/044.webp"
+              alt="..."
+              position="top"
+            />
+            <MDBCardBody>
+              <MDBCardTitle>Card title</MDBCardTitle>
+              <MDBCardText>
+                This is a longer card with supporting text below as a natural
+                lead-in to additional content. This content is a little bit
+                longer.
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+      </MDBRow>
     </div>
   );
 }
-
-export default HomeCards;

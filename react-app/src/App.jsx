@@ -1,8 +1,7 @@
 import NavBar from "./components/NavBar";
-import ShopNowCard from "./components/ShopNowCard";
 import Slides from "./components/Slides";
 import HomeCards from "./components/HomeCards";
-
+import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -19,6 +18,9 @@ function App() {
       </>
       <>
         <HomeCards></HomeCards>
+      </>
+      <>
+        <Footer></Footer>
       </>
     </>
   );

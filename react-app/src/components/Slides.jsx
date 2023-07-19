@@ -1,8 +1,9 @@
 import Carousel from "react-bootstrap/Carousel";
+import { MDBBtn } from "mdb-react-ui-kit";
 
 function Slides() {
   return (
-    <div>
+    <div className="mb-7">
       <Carousel>
         <Carousel.Item interval={2500}>
           <img
@@ -14,6 +15,10 @@ function Slides() {
           <Carousel.Caption>
             <h3>Unforgettable Moments, Unforgettable Suits</h3>
             <p>Rent the Finest Attire to Make a Lasting Impression</p>
+
+            <MDBBtn className="text-dark mb-3" color="light">
+              LEARN MORE
+            </MDBBtn>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2500}>
@@ -26,6 +31,10 @@ function Slides() {
           <Carousel.Caption>
             <h3>Sizes for Everyone</h3>
             <p>Browse our collections that cater to all shapes & sizes</p>
+
+            <MDBBtn className="text-dark mb-3" color="light">
+              LEARN MORE
+            </MDBBtn>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -38,6 +47,10 @@ function Slides() {
           <Carousel.Caption>
             <h3>Tailored to Perfection</h3>
             <p>Rent Premium Suits for a Flawless Fit and Impeccable Look</p>
+
+            <MDBBtn className="text-dark mb-3" color="light">
+              LEARN MORE
+            </MDBBtn>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
