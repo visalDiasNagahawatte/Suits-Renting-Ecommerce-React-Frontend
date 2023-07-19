@@ -11,7 +11,7 @@ function NavBar() {
     <div className="sticky-lg-top">
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img
               alt="logo"
               src="/images/ce_home.png"
@@ -32,8 +32,8 @@ function NavBar() {
               <Nav.Link href="#action2">Rent</Nav.Link>
 
               <Nav.Link href="#action6">About</Nav.Link>
-              <Nav.Link href="#action6">Weddings</Nav.Link>
-              <Nav.Link href="#action7">Contact Us</Nav.Link>
+              <Nav.Link href="/weddings">Weddings</Nav.Link>
+              <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
 
             <Link>

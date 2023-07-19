@@ -16,16 +16,19 @@ export default function Homecards() {
         <MDBCol>
           <MDBCard className="h-100">
             <MDBCardImage
-              src="https://mdbootstrap.com/img/new/standard/city/041.webp"
+              src="/images/cards/3.jpg"
               alt="..."
               position="top"
+              style={{ height: "400px" }}
             />
             <MDBCardBody>
-              <MDBCardTitle>Suites for Grooms and Bestmen</MDBCardTitle>
-              <MDBCardText>
-                Are you looking for a suit that will make you look stunning and
-                express your personal style to the fullest on your special day?
-                We have the answer!
+              <MDBCardTitle style={{ textAlign: "center" }}>
+                Western Wedding Suits
+              </MDBCardTitle>
+              <MDBCardText style={{ textAlign: "center" }}>
+                We offer high-quality, hand-tailored suits specifically designed
+                to your measurements. With a variety of fabrics and customizable
+                details available, you can design your own one-of-a-kind outfit.
               </MDBCardText>
             </MDBCardBody>
           </MDBCard>
@@ -33,28 +36,20 @@ export default function Homecards() {
         <MDBCol>
           <MDBCard className="h-100">
             <MDBCardImage
-              src="https://mdbootstrap.com/img/new/standard/city/042.webp"
+              src="/images/cards/4.jpeg"
               alt="..."
               position="top"
+              style={{ height: "400px" }}
             />
             <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>This is a short card.</MDBCardText>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard className="h-100">
-            <MDBCardImage
-              src="https://mdbootstrap.com/img/new/standard/city/043.webp"
-              alt="..."
-              position="top"
-            />
-            <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content.
+              <MDBCardTitle style={{ textAlign: "center" }}>
+                {" "}
+                Modern National Dresses
+              </MDBCardTitle>
+              <MDBCardText style={{ textAlign: "center" }}>
+                Our expertise extends to designing modern National Kits that
+                embody elegance and style. We ensure top-notch craftsmanship and
+                use only the finest materials to create your desired look.
               </MDBCardText>
             </MDBCardBody>
           </MDBCard>
@@ -62,16 +57,40 @@ export default function Homecards() {
         <MDBCol>
           <MDBCard className="h-100">
             <MDBCardImage
-              src="https://mdbootstrap.com/img/new/standard/city/044.webp"
+              src="/images/cards/2.jpg"
               alt="..."
               position="top"
+              style={{ height: "400px" }}
             />
             <MDBCardBody>
-              <MDBCardTitle>Card title</MDBCardTitle>
-              <MDBCardText>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
+              <MDBCardTitle style={{ textAlign: "center" }}>
+                Women's Formal Clothings
+              </MDBCardTitle>
+              <MDBCardText style={{ textAlign: "center" }}>
+                Experience the luxury of custom-made blazers and office wear
+                kits for women with an extensive range of seasonal fabrics
+                including wool, wool blends, linen, tweed, cotton, and corduroy.
+              </MDBCardText>
+            </MDBCardBody>
+          </MDBCard>
+        </MDBCol>
+        <MDBCol>
+          <MDBCard className="h-100">
+            <MDBCardImage
+              src="/images/cards/5.webp"
+              alt="..."
+              position="top"
+              style={{ height: "400px" }}
+            />
+            <MDBCardBody>
+              <MDBCardTitle style={{ textAlign: "center" }}>
+                Available in Kid Sizes
+              </MDBCardTitle>
+              <MDBCardText style={{ textAlign: "center" }}>
+                We offer our exquisite collection of suits and dresses in kid
+                sizes. From formal events to weddings, our range of high-quality
+                garments ensures that your little ones will shine with style and
+                confidence.
               </MDBCardText>
             </MDBCardBody>
           </MDBCard>

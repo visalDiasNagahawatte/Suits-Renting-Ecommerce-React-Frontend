@@ -16,6 +16,7 @@ function LoginPage() {
       <div>
         <NavBar></NavBar>
       </div>
+
       <div className="d-flex justify-content-center position-absolute top-50 start-50 translate-middle">
         <form>
           <MDBInput
