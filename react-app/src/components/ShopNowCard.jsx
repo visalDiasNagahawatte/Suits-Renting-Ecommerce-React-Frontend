@@ -3,16 +3,19 @@ import Card from "react-bootstrap/Card";
 
 function ShopNowCard() {
   return (
-    <div className="d-flex justify-content-center">
+    <div
+      style={{ textAlign: "center" }}
+      className="mb-5 d-flex justify-content-center"
+    >
       <Card style={{ width: "50rem" }}>
-        <Card.Img variant="top" src="/images/cards/card1.jpg" />
+        <Card.Img variant="top" src="/images/cards/wide_logo.jpg" />
         <Card.Body>
           <Card.Title>Card Title</Card.Title>
           <Card.Text>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.
           </Card.Text>
-          <Button variant="primary">Shop Now</Button>
+          <Button variant="primary">RENT NOW</Button>
         </Card.Body>
       </Card>
     </div>

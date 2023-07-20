@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import WeddingPage from "./pages/Weddingpage.jsx";
+import CartPage from "./pages/CartPage.jsx";
 import "/node_modules/bootstrap/dist/css/bootstrap.css";
 import "/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/weddings",
     element: <WeddingPage />,
+  },
+  {
+    path: "/cart",
+    element: <CartPage />,
   },
 ]);
 

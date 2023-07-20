@@ -29,14 +29,16 @@ function NavBar() {
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="#action2">Rent</Nav.Link>
+              <Nav.Link className="text-primary" href="#action2">
+                Rent
+              </Nav.Link>
 
               <Nav.Link href="#action6">About</Nav.Link>
               <Nav.Link href="/weddings">Weddings</Nav.Link>
               <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
 
-            <Link>
+            <Link to={"/cart"}>
               <span className="d-inline p-4">
                 <MDBIcon fas icon="shopping-cart"></MDBIcon>
               </span>

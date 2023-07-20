@@ -3,7 +3,7 @@ import { MDBBtn } from "mdb-react-ui-kit";
 
 function Slides() {
   return (
-    <div className="mb-7">
+    <div className="mb-4">
       <Carousel>
         <Carousel.Item interval={2500}>
           <img

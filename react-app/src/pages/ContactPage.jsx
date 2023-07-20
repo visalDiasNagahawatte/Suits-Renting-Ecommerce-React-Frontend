@@ -13,14 +13,23 @@ import Footer from "../components/Footer";
 export default function ContactPage() {
   return (
     <div>
-      <div className="mb-7">
+      <div className="mb-5 sticky-lg-top">
         <NavBar></NavBar>
       </div>
 
       <div>
         <MDBContainer>
           <MDBRow>
-            <MDBCol size="md">left</MDBCol>
+            <MDBCol size="md">
+              <div>
+                <p>Contact information email : info@ceylonexecutives.com.lk</p>{" "}
+                <p>
+                  Address: No: 666, Old Galle Road, Horethuduwa, Moratuwa, Sri
+                  Lanka
+                </p>
+                <p>Hot line : 0779293915</p>
+              </div>
+            </MDBCol>
             <MDBCol className="d-flex" size="md">
               <form>
                 <MDBInput id="form4Example1" wrapperClass="mb-4" label="Name" />
