@@ -9,11 +9,10 @@ function ShopNowCard() {
     >
       <Card style={{ width: "50rem" }}>
         <Card.Img variant="top" src="/images/cards/wide_logo.jpg" />
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
+        <Card.Body style={{ textAlign: "center" }}>
+          <Card.Title> Rent Your Perfect Outfit Now</Card.Title>
           <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            Find your ideal attire for any occasion with just a click!
           </Card.Text>
           <Button variant="primary">RENT NOW</Button>
         </Card.Body>

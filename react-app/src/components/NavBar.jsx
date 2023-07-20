@@ -29,19 +29,21 @@ function NavBar() {
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link className="text-primary" href="#action2">
-                Rent
-              </Nav.Link>
+              <Nav.Link href="/renthomepage">Rent</Nav.Link>
 
-              <Nav.Link href="#action6">About</Nav.Link>
+              <Nav.Link href="/about">About</Nav.Link>
               <Nav.Link href="/weddings">Weddings</Nav.Link>
               <Nav.Link href="/contact">Contact Us</Nav.Link>
             </Nav>
 
             <Link to={"/cart"}>
-              <span className="d-inline p-4">
-                <MDBIcon fas icon="shopping-cart"></MDBIcon>
-              </span>
+              <a
+                className="d-inline p-4 me-2 border rounded py-1 px-3 nav-link d-flex align-items-center"
+                target="_blank"
+              >
+                <i className="fas fa-shopping-cart m-1 me-md-2"></i>
+                <p className="d-none d-md-block mb-0">My cart</p>
+              </a>
             </Link>
 
             <Form className="d-flex ">

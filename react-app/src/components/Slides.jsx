@@ -1,5 +1,6 @@
 import Carousel from "react-bootstrap/Carousel";
 import { MDBBtn } from "mdb-react-ui-kit";
+import { Link } from "react-router-dom";
 
 function Slides() {
   return (
@@ -16,9 +17,11 @@ function Slides() {
             <h3>Unforgettable Moments, Unforgettable Suits</h3>
             <p>Rent the Finest Attire to Make a Lasting Impression</p>
 
-            <MDBBtn className="text-dark mb-3" color="light">
-              LEARN MORE
-            </MDBBtn>
+            <Link to={"/about"}>
+              <MDBBtn className="text-dark mb-3" color="light">
+                LEARN MORE
+              </MDBBtn>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={2500}>
@@ -32,9 +35,11 @@ function Slides() {
             <h3>Sizes for Everyone</h3>
             <p>Browse our collections that cater to all shapes & sizes</p>
 
-            <MDBBtn className="text-dark mb-3" color="light">
-              LEARN MORE
-            </MDBBtn>
+            <Link to={"/about"}>
+              <MDBBtn className="text-dark mb-3" color="light">
+                LEARN MORE
+              </MDBBtn>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item>
@@ -48,9 +53,11 @@ function Slides() {
             <h3>Tailored to Perfection</h3>
             <p>Rent Premium Suits for a Flawless Fit and Impeccable Look</p>
 
-            <MDBBtn className="text-dark mb-3" color="light">
-              LEARN MORE
-            </MDBBtn>
+            <Link to={"/about"}>
+              <MDBBtn className="text-dark mb-3" color="light">
+                LEARN MORE
+              </MDBBtn>
+            </Link>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
