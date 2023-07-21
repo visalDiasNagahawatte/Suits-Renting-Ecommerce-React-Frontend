@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 function ShopNowCard() {
   return (
@@ -9,12 +10,14 @@ function ShopNowCard() {
     >
       <Card style={{ width: "50rem" }}>
         <Card.Img variant="top" src="/images/cards/wide_logo.jpg" />
-        <Card.Body style={{ textAlign: "center" }}>
+        <Card.Body style={{ textAlign: "center", backgroundColor: "#459cc3" }}>
           <Card.Title> Rent Your Perfect Outfit Now</Card.Title>
           <Card.Text>
             Find your ideal attire for any occasion with just a click!
           </Card.Text>
-          <Button variant="primary">RENT NOW</Button>
+          <Link to={"/renthomepage01"}>
+            <Button variant="primary">RENT NOW</Button>
+          </Link>
         </Card.Body>
       </Card>
     </div>

@@ -29,7 +29,7 @@ function NavBar() {
               navbarScroll
             >
               <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link href="/renthomepage">Rent</Nav.Link>
+              <Nav.Link href="/renthomepage01">Rent</Nav.Link>
 
               <Nav.Link href="/about">About</Nav.Link>
               <Nav.Link href="/weddings">Weddings</Nav.Link>

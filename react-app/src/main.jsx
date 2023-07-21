@@ -6,7 +6,8 @@ import SignupPage from "./pages/SignupPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import WeddingPage from "./pages/Weddingpage.jsx";
 import CartPage from "./pages/CartPage.jsx";
-import RentHomePage from "./pages/RentHomePage.jsx";
+import RentHomePage01 from "./pages/RentHomePage01.jsx";
+import RentHomePage02 from "./pages/RentHomePage02.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import "/node_modules/bootstrap/dist/css/bootstrap.css";
 import "/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
@@ -40,12 +41,16 @@ const router = createBrowserRouter([
     element: <CartPage />,
   },
   {
-    path: "/renthomepage",
-    element: <RentHomePage />,
+    path: "/renthomepage01",
+    element: <RentHomePage01 />,
   },
   {
     path: "/about",
     element: <AboutPage />,
+  },
+  {
+    path: "/renthomepage02",
+    element: <RentHomePage02 />,
   },
 ]);
 

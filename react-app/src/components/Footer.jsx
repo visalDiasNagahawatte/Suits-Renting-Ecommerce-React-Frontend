@@ -88,7 +88,7 @@ export default function Footer() {
           className="text-center p-3"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
         >
-          © 2023 Copyright:
+          © 2023 : All rights reserved. Design by{" "}
           <a className="text-white">Visal Nagahawatte</a>
         </div>
       </MDBFooter>
