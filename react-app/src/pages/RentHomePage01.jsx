@@ -1,19 +1,23 @@
 import React from "react";
 import "./RentHomePage01.css";
-
-import {
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBCardImage,
-  MDBIcon,
-} from "mdb-react-ui-kit";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import ItemCard from "../components/ItemCard";
+import data from "../components/Data";
+
+import { useState } from "react";
 
 function RentHomePage01() {
+  const itemsPerPage = 9;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div>
       <div className="mb-3 sticky-lg-top">
@@ -148,217 +152,18 @@ function RentHomePage01() {
                 </header>
 
                 <div class="row">
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/s1.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <div class="d-flex flex-row">
-                          <h5 class="mb-1 me-1">$34,50</h5>
-                          <span class="text-danger">
-                            <s>$49.99</s>
-                          </span>
-                        </div>
-                        <p class="card-text">
-                          T-shirts with multiple colors, for men and lady
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/s2.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$120.00</h5>
-                        <p class="card-text">
-                          Winter Jacket for Men and Women, All sizes
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/s3.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$120.00</h5>
-                        <p class="card-text">
-                          T-shirts with multiple colors, for men and lady
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img
-                        src="/images/rent/t1.jpg"
-                        class="card-img-top"
-                        // style={{ aspectRatio: "1 / 1" }}
-                      />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$120.00</h5>
-                        <p class="card-text">
-                          Blazer Suit Dress Jacket for Men, Blue color
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img
-                        src="/images/rent/t2.jpg"
-                        class="card-img-top"
-                        // style={{ aspectRatio: "1 / 1" }}
-                      />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$510.00</h5>
-                        <p class="card-text">
-                          Slim sleeve wallet Italian leather - multiple colors
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/t3.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$79.99</h5>
-                        <p class="card-text">
-                          T-shirts with multiple colors, for men and lady
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/s4.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$120.00</h5>
-                        <p class="card-text">
-                          Winter Jacket for Men and Women, All sizes
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/s5.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$120.00</h5>
-                        <p class="card-text">
-                          T-shirts with multiple colors, for men and lady
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-                    <div class="card w-100 my-2 shadow-2-strong">
-                      <img src="/images/rent/s6.jpg" class="card-img-top" />
-                      <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">$43.50</h5>
-                        <p class="card-text">
-                          Summer New Men's Denim Jeans Shorts
-                        </p>
-                        <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                          <a href="#!" class="btn btn-primary shadow-0 me-1">
-                            Add to cart
-                          </a>
-                          <a
-                            href="#!"
-                            class="btn btn-light border icon-hover px-2 pt-2"
-                          >
-                            <i class="fas fa-heart fa-lg text-secondary px-1"></i>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  {data.productData
+                    .slice(startIndex, endIndex)
+                    .map((item, index) => {
+                      return (
+                        <ItemCard
+                          img={item.img}
+                          title={item.title}
+                          price={item.price}
+                          key={index}
+                        ></ItemCard>
+                      );
+                    })}
                 </div>
 
                 <hr />
@@ -368,13 +173,8 @@ function RentHomePage01() {
                   class="d-flex justify-content-center mt-3"
                 >
                   <ul class="pagination">
-                    <li class="page-item disabled">
-                      {/* <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                      </a> */}
-                    </li>
                     <li class="page-item active">
-                      <a class="page-link" href="#">
+                      <a class="page-link" href="/renthomepage01">
                         1
                       </a>
                     </li>
@@ -383,21 +183,7 @@ function RentHomePage01() {
                         2
                       </a>
                     </li>
-                    {/* <li class="page-item">
-                      <a class="page-link" href="#">
-                        3
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        4
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="#">
-                        5
-                      </a>
-                    </li> */}
+
                     <li class="page-item">
                       <a
                         class="page-link"
