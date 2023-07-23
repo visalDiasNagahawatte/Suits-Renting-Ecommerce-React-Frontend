@@ -1,20 +1,3 @@
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCardHeader,
-  MDBCardImage,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBListGroup,
-  MDBListGroupItem,
-  MDBRipple,
-  MDBRow,
-  MDBTooltip,
-  MDBTypography,
-} from "mdb-react-ui-kit";
 import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -224,26 +207,6 @@ function CartPage() {
               {/* <!-- cart --> */}
               {/* <!-- summary --> */}
               <div className="col-lg-3">
-                <div className="card mb-3 border shadow-0">
-                  <div className="card-body">
-                    <form>
-                      <div className="form-group">
-                        <label className="form-label">Have coupon?</label>
-                        <div className="input-group">
-                          <input
-                            type="text"
-                            className="form-control border"
-                            name=""
-                            placeholder="Coupon code"
-                          />
-                          <button className="btn btn-light border">
-                            Apply
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
                 <div className="card shadow-0 border">
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
