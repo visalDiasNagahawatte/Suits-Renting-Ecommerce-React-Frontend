@@ -60,6 +60,7 @@ function RentHomePage01() {
                   {filteredItems.map((item) => {
                     return (
                       <ItemCard
+                        id={item.id}
                         img={item.img}
                         title={item.title}
                         price={item.price}
