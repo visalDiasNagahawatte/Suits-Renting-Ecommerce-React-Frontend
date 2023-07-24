@@ -96,7 +96,11 @@ const Category = ({ setSelectedCategory }) => {
                         </ul>
                       </li>
                       <li>
-                        <a href="#" class="text-dark">
+                        <a
+                          href="#"
+                          class="text-dark"
+                          onClick={() => handleCategoryClick("Tuxedos")}
+                        >
                           Tuxedos{" "}
                         </a>
                         <ul>

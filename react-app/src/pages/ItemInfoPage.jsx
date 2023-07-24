@@ -3,10 +3,16 @@ import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import data from "../components/Data";
+import { CartProvider, useCart } from "react-use-cart";
 
 function ItemInfoPage() {
   const { id } = useParams(); // Access the id parameter from the URL
   const [selectedItem, setSelectedItem] = useState(null);
+  const [quantity, setQuantity] = useState(1); // Initialize the quantity state with 1
+  const [rentalDuration, setRentalDuration] = useState("05 Days"); // Initialize the rental duration state with the default value
+
+  // Use the useCart hook to access cart functionality
+  const { addItem } = useCart();
 
   useEffect(() => {
     // Use the `id` parameter to fetch the selectedItem asynchronously
@@ -24,6 +30,36 @@ function ItemInfoPage() {
     // You can return a loading state or message here
     return <div>Loading...</div>;
   }
+
+  // Event handlers to handle quantity change
+  const handleIncrement = () => {
+    if (quantity < 3) {
+      setQuantity(quantity + 1);
+    }
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleRentalDurationChange = (event) => {
+    setRentalDuration(event.target.value);
+  };
+
+  // Event handler to add the selected item to the cart
+  const handleAddToCart = () => {
+    const itemToAdd = {
+      id: selectedItem.id,
+      title: selectedItem.title,
+      price: selectedItem.price,
+      rentalDuration: rentalDuration,
+      image: selectedItem.img,
+    };
+    addItem(itemToAdd, quantity);
+  };
+
   return (
     <div>
       <div className="mb-1 sticky-lg-top">
@@ -34,7 +70,7 @@ function ItemInfoPage() {
           <div class="container">
             <div class="row gx-5">
               <aside class="col-lg-6">
-                <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                <div class=" mb-3 d-flex justify-content-center">
                   <a
                     data-fslightbox="mygalley"
                     class="rounded-4"
@@ -77,8 +113,11 @@ function ItemInfoPage() {
                   </div>
 
                   <div class="mb-3">
-                    <span class="h5">{selectedItem.price}</span>
-                    <span class="text-muted">/per box</span>
+                    <span class="h5">Rs. {selectedItem.price}/-</span>
+                    {/* <span class="text-muted"> per week</span> */}
+                    <div class="mt-2">
+                      <span class="h5"> Includes: Jacket & Pant</span>
+                    </div>
                   </div>
 
                   <p>
@@ -104,8 +143,8 @@ function ItemInfoPage() {
 
                   <hr />
 
-                  <div class="row mb-4">
-                    <div class="col-md-4 col-6">
+                  <div class="row mb-3">
+                    {/* <div class="col-md-4 col-6">
                       <label class="mb-2">Size</label>
                       <select
                         class="form-select border border-secondary"
@@ -115,23 +154,25 @@ function ItemInfoPage() {
                         <option>Medium</option>
                         <option>Large</option>
                       </select>
-                    </div>
+                    </div> */}
                     {/* <!-- col.// --> */}
-                    <div class="col-md-4 col-6 mb-3">
+                    <div class="col-md-4 col-6 mb-3 ">
                       <label class="mb-2 d-block">Quantity</label>
-                      <div class="input-group mb-3" style={{ width: "170px" }}>
+                      <div class="input-group mb-3 " style={{ width: "170px" }}>
                         <button
-                          class="btn btn-white border border-secondary px-3"
+                          class="btn btn-white border border-secondary px-3 "
                           type="button"
                           id="button-addon1"
                           data-mdb-ripple-color="dark"
+                          onClick={handleDecrement}
                         >
                           <i class="fas fa-minus"></i>
                         </button>
                         <input
                           type="text"
                           class="form-control text-center border border-secondary"
-                          placeholder="14"
+                          placeholder="1"
+                          value={quantity}
                           aria-label="Example text with button addon"
                           aria-describedby="button-addon1"
                         />
@@ -140,27 +181,45 @@ function ItemInfoPage() {
                           type="button"
                           id="button-addon2"
                           data-mdb-ripple-color="dark"
+                          onClick={handleIncrement}
                         >
                           <i class="fas fa-plus"></i>
                         </button>
                       </div>
                     </div>
+                    <div class="col-md-4 col-6">
+                      <label class="mb-2">Rental Duration</label>
+                      <select
+                        class="form-select border border-secondary"
+                        style={{ height: "35px" }}
+                        value={rentalDuration}
+                        onChange={handleRentalDurationChange}
+                      >
+                        <option> 05 Days</option>
+                        <option> 07 Days</option>
+                        <option>14 Days</option>
+                      </select>
+                    </div>
                   </div>
-                  <a href="#" class="btn btn-warning shadow-0">
+                  {/* <a href="#" class="btn btn-warning shadow-0">
                     {" "}
                     Buy now{" "}
-                  </a>
-                  <a href="#" class="btn btn-primary shadow-0">
+                  </a> */}
+                  <a
+                    href="#"
+                    class="btn btn-primary shadow-0"
+                    onClick={handleAddToCart}
+                  >
                     {" "}
                     <i class="me-1 fa fa-shopping-basket"></i> Add to cart{" "}
                   </a>
-                  <a
+                  {/* <a
                     href="#"
                     class="btn btn-light border border-secondary py-2 icon-hover px-3"
                   >
                     {" "}
                     <i class="me-1 fa fa-heart fa-lg"></i> Save{" "}
-                  </a>
+                  </a> */}
                 </div>
               </main>
             </div>

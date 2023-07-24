@@ -11,8 +11,8 @@ function RentHomePage01() {
 
   const filteredItems = useMemo(() => {
     if (selectedCategory) {
-      return data.productData.filter(
-        (item) => item.category === selectedCategory
+      return data.productData.filter((item) =>
+        item.category.toLowerCase().includes(selectedCategory.toLowerCase())
       );
     }
     return data.productData;

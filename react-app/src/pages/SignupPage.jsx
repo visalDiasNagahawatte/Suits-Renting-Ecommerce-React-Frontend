@@ -18,7 +18,7 @@ export default function SignupPage() {
       </div>
       <div className="d-flex justify-content-center position-absolute top-50 start-50 translate-middle">
         <form>
-          <MDBRow className="mb-1">
+          <MDBRow className="mb-4">
             <MDBCol>
               <MDBInput id="form3Example1" label="First name" />
             </MDBCol>
