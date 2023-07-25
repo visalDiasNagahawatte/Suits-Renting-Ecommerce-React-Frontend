@@ -23,6 +23,7 @@ const data = {
       title: "CHARCOAL SUIT",
       category: "Black Suits",
       price: 2000,
+      isInStock: true,
     },
     {
       id: 2,
@@ -30,6 +31,7 @@ const data = {
       title: "PLUM SUIT",
       category: "Various Colors Suits",
       price: 3000,
+      isInStock: false,
     },
     {
       id: 3,
@@ -37,6 +39,7 @@ const data = {
       title: "DUSK BLUE SUIT",
       category: "Blue Suits",
       price: 2600,
+      isInStock: true,
     },
     {
       id: 4,
@@ -44,6 +47,7 @@ const data = {
       title: "BLACK SHAWL COLLAR TUXEDO",
       category: "Black Tuxedos",
       price: 2000,
+      isInStock: true,
     },
     {
       id: 5,
@@ -51,6 +55,7 @@ const data = {
       title: "IVORY TUXEDO",
       category: "Various Colors Tuxedos",
       price: 2500,
+      isInStock: true,
     },
     {
       id: 6,
@@ -58,6 +63,7 @@ const data = {
       title: "DUSK BLUE TUXEDO",
       category: "Blue Tuxedos",
       price: 2000,
+      isInStock: true,
     },
     {
       id: 7,
@@ -65,6 +71,7 @@ const data = {
       title: "BLACK NOTCH LAPEL SUIT",
       category: "Black Suits",
       price: 2000,
+      isInStock: true,
     },
     {
       id: 8,
@@ -72,6 +79,7 @@ const data = {
       title: "TAN SUIT",
       category: "Various Colors Suits",
       price: 2400,
+      isInStock: true,
     },
     {
       id: 9,
@@ -79,6 +87,7 @@ const data = {
       title: "SHARKSKIN GREY SUIT",
       category: "Various Colors Suits",
       price: 2600,
+      isInStock: true,
     },
     {
       id: 10,
@@ -86,6 +95,7 @@ const data = {
       title: "SINDIGO BLUE TUXEDO",
       category: "Blue Tuxedos",
       price: 2200,
+      isInStock: true,
     },
     {
       id: 11,
@@ -93,6 +103,7 @@ const data = {
       title: "RED TUXEDO WITH SHAWL COLLAR",
       category: "Various Colors Tuxedos",
       price: 2600,
+      isInStock: true,
     },
     {
       id: 12,
@@ -100,6 +111,7 @@ const data = {
       title: "BLUE PAISLEY TUXEDO",
       category: "Blue Tuxedos",
       price: 2000,
+      isInStock: true,
     },
     {
       id: 13,
@@ -107,6 +119,7 @@ const data = {
       title: "INDIGO BLUE SUIT",
       category: "Blue Suits",
       price: 2000,
+      isInStock: true,
     },
     {
       id: 14,
@@ -114,6 +127,7 @@ const data = {
       title: "LIGHT GREY SUIT",
       category: "Various Colors Suits",
       price: 2400,
+      isInStock: true,
     },
     {
       id: 15,
@@ -121,6 +135,7 @@ const data = {
       title: "NAVY SUIT",
       category: "Blue Suits",
       price: 2000,
+      isInStock: true,
     },
   ],
 };

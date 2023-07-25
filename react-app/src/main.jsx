@@ -16,6 +16,7 @@ import "/node_modules/bootstrap/dist/css/bootstrap.css";
 import "/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { CartProvider } from "react-use-cart";
+import CheckoutPage from "./pages/CheckoutPage";
 
 ReactDOM.render(
   <CartProvider>
@@ -34,6 +35,7 @@ ReactDOM.render(
           <Route path="/item/:id" element={<ItemInfoPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/checkoutpage" element={<CheckoutPage />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

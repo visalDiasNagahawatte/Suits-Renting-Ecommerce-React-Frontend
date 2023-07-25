@@ -3,16 +3,14 @@ import {
   MDBCol,
   MDBRow,
   MDBIcon,
-  MDBValidation,
-  MDBValidationItem,
   MDBInput,
-  MDBInputGroup,
   MDBBtn,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {
   const [formValue, setFormValue] = useState({
@@ -30,6 +28,8 @@ export default function SignupPage() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigateTo = useNavigate(); // Get the history object
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -53,6 +53,7 @@ export default function SignupPage() {
       .post("http://localhost:8080/api/v1/user/signup", data)
       .then((response) => {
         console.log(response.data);
+        navigateTo("/login");
       })
       .catch((error) => {
         console.error(error);
@@ -87,7 +88,7 @@ export default function SignupPage() {
                 label="Last name"
                 value={formValue.lastName}
                 onChange={(e) => {
-                  setFirstName(e.target.value);
+                  setLastName(e.target.value);
                   onChange(e);
                 }}
               />
@@ -132,7 +133,7 @@ export default function SignupPage() {
             <p>
               Already have an account? <a href="/login">Log In</a>
             </p>
-            <p>or sign up with:</p>
+            {/* <p>or sign up with:</p>
             <MDBBtn floating color="secondary" className="mx-1">
               <MDBIcon fab icon="facebook-f" />
             </MDBBtn>
@@ -144,7 +145,7 @@ export default function SignupPage() {
             </MDBBtn>
             <MDBBtn floating color="secondary" className="mx-1">
               <MDBIcon fab icon="github" />
-            </MDBBtn>
+            </MDBBtn> */}
           </div>
         </form>
       </div>

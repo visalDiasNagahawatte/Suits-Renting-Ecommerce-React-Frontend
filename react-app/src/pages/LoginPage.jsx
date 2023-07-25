@@ -59,7 +59,7 @@ function LoginPage() {
             <p>
               Not a member? <a href="/signup">Register</a>
             </p>
-            <p>or sign up with:</p>
+            {/* <p>or sign up with:</p>
 
             <MDBBtn floating color="secondary" className="mx-1">
               <MDBIcon fab icon="facebook-f" />
@@ -75,7 +75,7 @@ function LoginPage() {
 
             <MDBBtn floating color="secondary" className="mx-1">
               <MDBIcon fab icon="github" />
-            </MDBBtn>
+            </MDBBtn> */}
           </div>
         </form>
       </div>

@@ -4,7 +4,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import data from "../components/Data";
 import { CartProvider, useCart } from "react-use-cart";
-import axios from "axios";
 
 function ItemInfoPage() {
   const { id } = useParams(); // Access the id parameter from the URL
@@ -13,7 +12,7 @@ function ItemInfoPage() {
   const [rentalDuration, setRentalDuration] = useState("05 Days"); // Initialize the rental duration state with the default value
 
   // Use the useCart hook to access cart functionality
-  const { addItem } = useCart();
+  const { addItem, items } = useCart();
 
   useEffect(() => {
     // Use the `id` parameter to fetch the selectedItem asynchronously
@@ -49,6 +48,8 @@ function ItemInfoPage() {
     setRentalDuration(event.target.value);
   };
 
+  const itemInCart = items.find((item) => item.id === selectedItem.id);
+
   // Event handler to add the selected item to the cart
   const handleAddToCart = () => {
     const itemToAdd = {
@@ -58,21 +59,16 @@ function ItemInfoPage() {
       rentalDuration: rentalDuration,
       image: selectedItem.img,
     };
-    addItem(itemToAdd, quantity);
-  };
 
-  // function addCart() {
-  //   const data = {
-  //     userName: "Visal",
-  //     email: "visalgayantha76@gmail.com",
-  //     password: "visal123",
-  //   };
-  //   axios
-  //     .post("http://localhost:8080/api/v1/user/signup", data)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     });
-  // }
+    if (itemInCart) {
+      // Item is already in the cart, enable the button again
+      console.log("Item is already in the cart");
+    } else {
+      // Item is not in the cart, add it and disable the button
+      addItem(itemToAdd, quantity);
+      console.log("Item added to the cart");
+    }
+  };
 
   return (
     <div>
@@ -119,11 +115,15 @@ function ItemInfoPage() {
                       <i class="fas fa-star-half-alt"></i>
                       <span class="ms-1">4.5</span>
                     </div>
-                    <span class="text-muted">
+                    {/* <span class="text-muted">
                       <i class="fas fa-shopping-basket fa-sm mx-1"></i>154
                       orders
-                    </span>
-                    <span class="text-success ms-2">In stock</span>
+                    </span> */}
+                    {selectedItem.isInStock ? (
+                      <span class="text-success ms-2">In stock</span>
+                    ) : (
+                      <span class="text-danger ms-2">Out of stock</span>
+                    )}
                   </div>
 
                   <div class="mb-3">
@@ -158,18 +158,6 @@ function ItemInfoPage() {
                   <hr />
 
                   <div class="row mb-3">
-                    {/* <div class="col-md-4 col-6">
-                      <label class="mb-2">Size</label>
-                      <select
-                        class="form-select border border-secondary"
-                        style={{ height: "35px" }}
-                      >
-                        <option>Small</option>
-                        <option>Medium</option>
-                        <option>Large</option>
-                      </select>
-                    </div> */}
-                    {/* <!-- col.// --> */}
                     <div class="col-md-4 col-6 mb-3 ">
                       <label class="mb-2 d-block">Quantity</label>
                       <div class="input-group mb-3 " style={{ width: "170px" }}>
@@ -215,25 +203,17 @@ function ItemInfoPage() {
                       </select>
                     </div>
                   </div>
-                  {/* <a href="#" class="btn btn-warning shadow-0">
-                    {" "}
-                    Buy now{" "}
-                  </a> */}
+
                   <a
                     href="#"
-                    class="btn btn-primary shadow-0"
+                    class={`btn ${
+                      itemInCart ? "btn-success" : "btn-primary"
+                    } shadow-0`}
                     onClick={handleAddToCart}
                   >
                     {" "}
                     <i class="me-1 fa fa-shopping-basket"></i> Add to cart{" "}
                   </a>
-                  {/* <a
-                    href="#"
-                    class="btn btn-light border border-secondary py-2 icon-hover px-3"
-                  >
-                    {" "}
-                    <i class="me-1 fa fa-heart fa-lg"></i> Save{" "}
-                  </a> */}
                 </div>
               </main>
             </div>
