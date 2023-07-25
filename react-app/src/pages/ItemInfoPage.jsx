@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import data from "../components/Data";
 import { CartProvider, useCart } from "react-use-cart";
+import axios from "axios";
 
 function ItemInfoPage() {
   const { id } = useParams(); // Access the id parameter from the URL
@@ -59,6 +60,19 @@ function ItemInfoPage() {
     };
     addItem(itemToAdd, quantity);
   };
+
+  // function addCart() {
+  //   const data = {
+  //     userName: "Visal",
+  //     email: "visalgayantha76@gmail.com",
+  //     password: "visal123",
+  //   };
+  //   axios
+  //     .post("http://localhost:8080/api/v1/user/signup", data)
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     });
+  // }
 
   return (
     <div>

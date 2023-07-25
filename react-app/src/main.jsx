@@ -33,7 +33,7 @@ ReactDOM.render(
           <Route path="/weddings" element={<WeddingPage />} />
           <Route path="/item/:id" element={<ItemInfoPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/admin/" element={<AdminDashboard />} />
+          <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

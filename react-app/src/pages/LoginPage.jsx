@@ -17,7 +17,7 @@ function LoginPage() {
         <NavBar></NavBar>
       </div>
 
-      <div className="d-flex justify-content-center position-absolute top-50 start-50 translate-middle">
+      <div className="mb-7 justify-content-center position-absolute top-50 start-50 translate-middle">
         <form>
           <MDBInput
             className="mb-4"
@@ -42,6 +42,12 @@ function LoginPage() {
             </MDBCol>
             <MDBCol>
               <a href="#!">Forgot password?</a>
+            </MDBCol>
+          </MDBRow>
+
+          <MDBRow className="mb-4">
+            <MDBCol>
+              <a href="/admin">Admin</a>
             </MDBCol>
           </MDBRow>
 
@@ -73,7 +79,7 @@ function LoginPage() {
           </div>
         </form>
       </div>
-      <div className="fixed-bottom">
+      <div className=" fixed-bottom">
         <Footer></Footer>
       </div>
     </div>

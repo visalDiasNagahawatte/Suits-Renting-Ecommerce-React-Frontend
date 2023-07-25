@@ -1,42 +1,123 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  MDBInput,
   MDBCol,
   MDBRow,
-  MDBCheckbox,
-  MDBBtn,
   MDBIcon,
+  MDBValidation,
+  MDBValidationItem,
+  MDBInput,
+  MDBInputGroup,
+  MDBBtn,
+  MDBCheckbox,
 } from "mdb-react-ui-kit";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import axios from "axios";
 
 export default function SignupPage() {
+  const [formValue, setFormValue] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const onChange = (e) => {
+    setFormValue({ ...formValue, [e.target.name]: e.target.value });
+  };
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    // Combine first name and last name
+    const userName = `${firstName} ${lastName}`;
+
+    // Prepare data object to send
+    const data = {
+      userName,
+      email,
+      password,
+    };
+
+    // Call the API to send data to the server
+    sendSignupData(data);
+  };
+
+  function sendSignupData(data) {
+    axios
+      .post("http://localhost:8080/api/v1/user/signup", data)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
   return (
     <div>
       <div>
         <NavBar></NavBar>
       </div>
       <div className="d-flex justify-content-center position-absolute top-50 start-50 translate-middle">
-        <form>
+        <form onSubmit={handleSignup}>
           <MDBRow className="mb-4">
             <MDBCol>
-              <MDBInput id="form3Example1" label="First name" />
+              <MDBInput
+                name="firstName"
+                id="validationCustom01"
+                required
+                label="First name"
+                value={formValue.firstName}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                  onChange(e);
+                }}
+              />
             </MDBCol>
             <MDBCol>
-              <MDBInput id="form3Example2" label="Last name" />
+              <MDBInput
+                name="lastName"
+                id="validationCustom02"
+                required
+                label="Last name"
+                value={formValue.lastName}
+                onChange={(e) => {
+                  setFirstName(e.target.value);
+                  onChange(e);
+                }}
+              />
             </MDBCol>
           </MDBRow>
           <MDBInput
             className="mb-4"
+            name="email"
             type="email"
-            id="form3Example3"
+            id="validationCustom03"
+            required
             label="Email address"
+            value={formValue.email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              onChange(e);
+            }}
           />
           <MDBInput
             className="mb-4"
+            name="password"
             type="password"
-            id="form3Example4"
+            id="validationCustom04"
+            required
             label="Password"
+            value={formValue.password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              onChange(e);
+            }}
           />
           <MDBCheckbox
             wrapperClass="d-flex justify-content-center mb-4"
