@@ -28,7 +28,7 @@ export default function Footer() {
               <MDBIcon fab icon="facebook-f" />
             </MDBBtn>
 
-            <MDBBtn
+            {/* <MDBBtn
               outline
               color="light"
               floating
@@ -80,7 +80,7 @@ export default function Footer() {
               role="button"
             >
               <MDBIcon fab icon="github" />
-            </MDBBtn>
+            </MDBBtn> */}
           </section>
         </MDBContainer>
 

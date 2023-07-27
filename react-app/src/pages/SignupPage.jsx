@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   MDBCol,
   MDBRow,
-  MDBIcon,
   MDBInput,
   MDBBtn,
   MDBCheckbox,
@@ -24,24 +23,19 @@ export default function SignupPage() {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   const navigateTo = useNavigate(); // Get the history object
 
   const handleSignup = (e) => {
     e.preventDefault();
 
     // Combine first name and last name
-    const userName = `${firstName} ${lastName}`;
+    const userName = `${formValue.firstName} ${formValue.lastName}`;
 
     // Prepare data object to send
     const data = {
       userName,
-      email,
-      password,
+      email: formValue.email,
+      password: formValue.password,
     };
 
     // Call the API to send data to the server
@@ -59,11 +53,10 @@ export default function SignupPage() {
         console.error(error);
       });
   }
+
   return (
     <div>
-      <div>
-        <NavBar></NavBar>
-      </div>
+      <NavBar />
       <div className="d-flex justify-content-center position-absolute top-50 start-50 translate-middle">
         <form onSubmit={handleSignup}>
           <MDBRow className="mb-4">
@@ -74,10 +67,7 @@ export default function SignupPage() {
                 required
                 label="First name"
                 value={formValue.firstName}
-                onChange={(e) => {
-                  setFirstName(e.target.value);
-                  onChange(e);
-                }}
+                onChange={onChange}
               />
             </MDBCol>
             <MDBCol>
@@ -87,10 +77,7 @@ export default function SignupPage() {
                 required
                 label="Last name"
                 value={formValue.lastName}
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                  onChange(e);
-                }}
+                onChange={onChange}
               />
             </MDBCol>
           </MDBRow>
@@ -102,10 +89,7 @@ export default function SignupPage() {
             required
             label="Email address"
             value={formValue.email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-              onChange(e);
-            }}
+            onChange={onChange}
           />
           <MDBInput
             className="mb-4"
@@ -115,10 +99,7 @@ export default function SignupPage() {
             required
             label="Password"
             value={formValue.password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-              onChange(e);
-            }}
+            onChange={onChange}
           />
           <MDBCheckbox
             wrapperClass="d-flex justify-content-center mb-4"
@@ -133,24 +114,11 @@ export default function SignupPage() {
             <p>
               Already have an account? <a href="/login">Log In</a>
             </p>
-            {/* <p>or sign up with:</p>
-            <MDBBtn floating color="secondary" className="mx-1">
-              <MDBIcon fab icon="facebook-f" />
-            </MDBBtn>
-            <MDBBtn floating color="secondary" className="mx-1">
-              <MDBIcon fab icon="google" />
-            </MDBBtn>
-            <MDBBtn floating color="secondary" className="mx-1">
-              <MDBIcon fab icon="twitter" />
-            </MDBBtn>
-            <MDBBtn floating color="secondary" className="mx-1">
-              <MDBIcon fab icon="github" />
-            </MDBBtn> */}
           </div>
         </form>
       </div>
       <div className="fixed-bottom">
-        <Footer></Footer>
+        <Footer />
       </div>
     </div>
   );

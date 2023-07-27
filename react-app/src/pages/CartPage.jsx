@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useCart } from "react-use-cart";
+import data from "../components/Data";
 
 function CartPage() {
   const { items, isEmpty, removeItem } = useCart(); // Access the items and removeItem functions from useCart hook
@@ -144,24 +145,43 @@ function CartPage() {
               <div className="col-lg-3">
                 <div className="card shadow-0 border">
                   <div className="card-body">
-                    <div className="d-flex justify-content-between">
-                      <p className="mb-2">Total price:</p>
-                      <p className="mb-2">Rs. {total.toFixed(2)}</p>
-                    </div>
-                    <div className="d-flex justify-content-between">
-                      <p className="mb-2">Discount:</p>
-                      <p className="mb-2 text-success">-Rs.200.00</p>
-                    </div>
-                    <div className="d-flex justify-content-between">
-                      <p className="mb-2">TAX:</p>
-                      <p className="mb-2">RS. 300.00</p>
-                    </div>
-                    <hr />
-                    <div className="d-flex justify-content-between">
-                      <p className="mb-2">Total price:</p>
-                      <p className="mb-2 fw-bold">$283.00</p>
-                    </div>
-
+                    {isEmpty ? (
+                      <div>
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">Total price:</p>
+                          <p className="mb-2">Rs. 0.00</p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">TAX:</p>
+                          <p className="mb-2">Rs. 0.00</p>
+                        </div>
+                        <hr />
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">Total price:</p>
+                          <p className="mb-2 fw-bold">Rs. 0.00</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">Total price:</p>
+                          <p className="mb-2">Rs. {total.toFixed(2)}</p>
+                        </div>
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">TAX:</p>
+                          <p className="mb-2">
+                            RS. {data.taxAmount.toFixed(2)}
+                          </p>
+                        </div>
+                        <hr />
+                        <div className="d-flex justify-content-between">
+                          <p className="mb-2">Total price:</p>
+                          <p className="mb-2 fw-bold">
+                            Rs. {(total + data.taxAmount).toFixed(2)}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                     <div className="mt-3">
                       {!isEmpty && (
                         <a

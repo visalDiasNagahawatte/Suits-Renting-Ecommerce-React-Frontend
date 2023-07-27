@@ -114,17 +114,17 @@ function CheckoutPage() {
                 <div className="card shadow-0 border">
                   <div className="card-body">
                     <div className="d-flex justify-content-between">
-                      <p className="mb-2">Total price:</p>
+                      <p className="mb-2"></p>
                       {/* <p className="mb-2">Rs. {total.toFixed(2)}</p> */}
                     </div>
-                    <div className="d-flex justify-content-between">
+                    {/* <div className="d-flex justify-content-between">
                       <p className="mb-2">Discount:</p>
                       <p className="mb-2 text-success">-Rs.200.00</p>
                     </div>
                     <div className="d-flex justify-content-between">
                       <p className="mb-2">Delivery Cost:</p>
                       <p className="mb-2">RS. 300.00</p>
-                    </div>
+                    </div> */}
                     <hr />
                     <div className="d-flex justify-content-between">
                       <p className="mb-2">Total price:</p>

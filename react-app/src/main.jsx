@@ -11,12 +11,14 @@ import ItemInfoPage from "./pages/ItemInfoPage";
 import RentHomePage01 from "./pages/RentHomePage01";
 import AboutPage from "./pages/AboutPage";
 import CartPage from "./pages/CartPage";
-import AdminDashboard from "./Admin/pages/AdminDashboard";
 import "/node_modules/bootstrap/dist/css/bootstrap.css";
 import "/node_modules/mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { CartProvider } from "react-use-cart";
 import CheckoutPage from "./pages/CheckoutPage";
+import UserAdmin from "./Admin/pages/UserAdmin";
+import ProductAdmin from "./Admin/pages/ProductAdmin";
+import OrderAdmin from "./Admin/pages/OrderAdmin";
 
 ReactDOM.render(
   <CartProvider>
@@ -34,8 +36,10 @@ ReactDOM.render(
           <Route path="/weddings" element={<WeddingPage />} />
           <Route path="/item/:id" element={<ItemInfoPage />} />
           <Route path="/cart" element={<CartPage />} />
-          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/checkoutpage" element={<CheckoutPage />} />
+          <Route path="/useradmin" element={<UserAdmin />} />
+          <Route path="/productadmin" element={<ProductAdmin />} />
+          <Route path="/orderadmin" element={<OrderAdmin />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>
