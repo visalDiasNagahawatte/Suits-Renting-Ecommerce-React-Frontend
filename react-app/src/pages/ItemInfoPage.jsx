@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import data from "../components/Data";
 import { CartProvider, useCart } from "react-use-cart";
 
 function ItemInfoPage() {

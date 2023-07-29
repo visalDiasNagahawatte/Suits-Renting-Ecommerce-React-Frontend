@@ -1,22 +1,64 @@
-import React, { Link, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "./RentHomePage01.css";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import ItemCard from "../components/ItemCard";
-import data from "../components/Data";
 import Category from "../components/Category";
+import axios from "axios";
 
 function RentHomePage01() {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [filteredItems, setFilteredItems] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true); // New loading state
 
-  const filteredItems = useMemo(() => {
+  useEffect(() => {
+    // Fetch category data from the backend API
+    axios
+      .get("http://localhost:8080/api/v1/category")
+      .then((response) => {
+        // Update the categories state with the fetched category data
+        setCategories(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching category data:", error);
+      });
+
+    // Fetch product data from the backend API
+    axios
+      .get("http://localhost:8080/api/v1/product")
+      .then((response) => {
+        console.log("product data received:", response.data);
+        // Update the filteredItems state with the fetched product data
+        setFilteredItems(response.data.data);
+        setLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+        setLoading(false); // Set loading to false even if there is an error
+      });
+  }, []);
+
+  const getCategoryNameById = (categoryId) => {
+    const category = categories.find((cat) => cat.categoryId === categoryId);
+    return category ? category.categoryName : "";
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const itemsToDisplay = useMemo(() => {
     if (selectedCategory) {
-      return data.productData.filter((item) =>
-        item.category.toLowerCase().includes(selectedCategory.toLowerCase())
+      return filteredItems.filter((item) =>
+        getCategoryNameById(item.categoryId)
+          .toLowerCase()
+          .includes(selectedCategory.toLowerCase())
       );
     }
-    return data.productData;
-  }, [selectedCategory]);
+    return filteredItems;
+  }, [selectedCategory, filteredItems, getCategoryNameById]);
+  console.log("filteredItems:", filteredItems);
 
   return (
     <div>
@@ -57,15 +99,16 @@ function RentHomePage01() {
                 </header>
 
                 <div class="row">
-                  {filteredItems.map((item) => {
+                  {itemsToDisplay.map((item) => {
+                    console.log("item:", item);
                     return (
                       <ItemCard
-                        id={item.id}
-                        img={item.img}
+                        id={item.productId}
+                        img={item.imgUrl}
                         title={item.title}
                         price={item.price}
-                        key={item.id}
-                      ></ItemCard>
+                        key={item.productId}
+                      />
                     );
                   })}
                 </div>
@@ -75,30 +118,7 @@ function RentHomePage01() {
                 <nav
                   aria-label="Page navigation example"
                   class="d-flex justify-content-center mt-3"
-                >
-                  {/* <ul class="pagination">
-                    <li class="page-item active">
-                      <a class="page-link" href="/renthomepage01">
-                        1
-                      </a>
-                    </li>
-                    <li class="page-item">
-                      <a class="page-link" href="/renthomepage02">
-                        2
-                      </a>
-                    </li>
-
-                    <li class="page-item">
-                      <a
-                        class="page-link"
-                        href="/renthomepage02"
-                        aria-label="Next"
-                      >
-                        <span aria-hidden="true">&raquo;</span>
-                      </a>
-                    </li>
-                  </ul> */}
-                </nav>
+                ></nav>
               </div>
             </div>
           </div>

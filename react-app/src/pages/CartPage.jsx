@@ -2,12 +2,12 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useCart } from "react-use-cart";
-import data from "../components/Data";
+import axios from "axios"; // Import Axios
 
 function CartPage() {
   const { items, isEmpty, removeItem } = useCart(); // Access the items and removeItem functions from useCart hook
   // if (isEmpty) return <p>Your cart is empty</p>;
-
+  const [productData, setProductData] = useState([]);
   // Calculate the total price of all items in the cart
   const total = items.reduce(
     (acc, item) =>
@@ -39,6 +39,17 @@ function CartPage() {
       return 0; // Default to 0 if rentalDuration doesn't match any condition
     }
   }
+
+  useEffect(() => {
+    axios
+      .get("/http://localhost:8080/api/v1/product") // Replace "/api/products" with your backend API endpoint for fetching products
+      .then((response) => {
+        setProductData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, []);
 
   return (
     <div>

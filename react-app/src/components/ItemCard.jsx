@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ItemCard = (props) => {
-  // console.log(props.id);
+  console.log("Image URL:", props.img);
   return (
     <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
       <Link to={`/item/${props.id}`}>
