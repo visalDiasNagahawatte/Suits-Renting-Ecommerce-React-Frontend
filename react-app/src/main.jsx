@@ -34,7 +34,7 @@ ReactDOM.render(
           <Route path="/renthomepage01" element={<RentHomePage01 />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/weddings" element={<WeddingPage />} />
-          <Route path="/item/:id" element={<ItemInfoPage />} />
+          <Route path="/item/:title" element={<ItemInfoPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkoutpage" element={<CheckoutPage />} />
           <Route path="/useradmin" element={<UserAdmin />} />

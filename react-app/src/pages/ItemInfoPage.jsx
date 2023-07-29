@@ -3,25 +3,35 @@ import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { CartProvider, useCart } from "react-use-cart";
+import axios from "axios";
 
 function ItemInfoPage() {
-  const { id } = useParams(); // Access the id parameter from the URL
+  const { title } = useParams(); // Access the id parameter from the URL
   const [selectedItem, setSelectedItem] = useState(null);
   const [quantity, setQuantity] = useState(1); // Initialize the quantity state with 1
   const [rentalDuration, setRentalDuration] = useState("05 Days"); // Initialize the rental duration state with the default value
 
+  const originalTitle = title.replace(/%|-|20/g, " ");
+  console.log(originalTitle);
   // Use the useCart hook to access cart functionality
   const { addItem, items } = useCart();
 
   useEffect(() => {
-    // Use the `id` parameter to fetch the selectedItem asynchronously
-    console.log("Fetching item with id:", id);
-    const selectedItem = data.productData.find(
-      (item) => item.id === parseInt(id)
-    );
-    console.log("Selected item:", selectedItem);
-    setSelectedItem(selectedItem);
-  }, [id]);
+    // Fetch item data from the backend API based on the item's title
+    axios
+      .get("http://localhost:8080/api/v1/product/find", {
+        params: {
+          title: originalTitle, // Pass the title as a parameter in the request body
+        },
+      })
+      .then((response) => {
+        const selectedItem = response.data.data; // Get the item data from the 'data' property of the response
+        setSelectedItem(selectedItem);
+      })
+      .catch((error) => {
+        console.error("Error fetching item data:", error);
+      });
+  }, [originalTitle]); // Use originalTitle here, assuming it holds the value of the title you want to fetch
 
   // Check if selectedItem is not defined yet (e.g., while fetching the data)
   if (!selectedItem) {
@@ -52,11 +62,11 @@ function ItemInfoPage() {
   // Event handler to add the selected item to the cart
   const handleAddToCart = () => {
     const itemToAdd = {
-      id: selectedItem.id,
+      id: selectedItem.productId,
       title: selectedItem.title,
       price: selectedItem.price,
       rentalDuration: rentalDuration,
-      image: selectedItem.img,
+      image: selectedItem.imgUrl,
     };
 
     if (itemInCart) {
@@ -85,7 +95,7 @@ function ItemInfoPage() {
                     class="rounded-4"
                     target="_blank"
                     data-type="image"
-                    href={selectedItem.img}
+                    href={selectedItem.imgUrl}
                   >
                     <img
                       style={{
@@ -94,7 +104,7 @@ function ItemInfoPage() {
                         margin: "auto",
                       }}
                       class="rounded-4 fit"
-                      src={selectedItem.img}
+                      src={selectedItem.imgUrl}
                     />
                   </a>
                 </div>
@@ -118,7 +128,7 @@ function ItemInfoPage() {
                       <i class="fas fa-shopping-basket fa-sm mx-1"></i>154
                       orders
                     </span> */}
-                    {selectedItem.isInStock ? (
+                    {selectedItem.inStock ? (
                       <span class="text-success ms-2">In stock</span>
                     ) : (
                       <span class="text-danger ms-2">Out of stock</span>

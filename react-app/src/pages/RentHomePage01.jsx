@@ -17,6 +17,7 @@ function RentHomePage01() {
     axios
       .get("http://localhost:8080/api/v1/category")
       .then((response) => {
+        console.log("category data received:", response.data);
         // Update the categories state with the fetched category data
         setCategories(response.data.data);
       })
@@ -39,9 +40,13 @@ function RentHomePage01() {
       });
   }, []);
 
-  const getCategoryNameById = (categoryId) => {
-    const category = categories.find((cat) => cat.categoryId === categoryId);
-    return category ? category.categoryName : "";
+  const getCategoryByName = (categoryName) => {
+    const category = categories.find(
+      (cat) =>
+        cat.categoryName &&
+        cat.categoryName.toLowerCase() === categoryName.toLowerCase()
+    );
+    return category ? category.categoryId : null;
   };
 
   const handleCategoryChange = (category) => {
@@ -50,16 +55,28 @@ function RentHomePage01() {
 
   const itemsToDisplay = useMemo(() => {
     if (selectedCategory) {
-      return filteredItems.filter((item) =>
-        getCategoryNameById(item.categoryId)
-          .toLowerCase()
-          .includes(selectedCategory.toLowerCase())
-      );
+      if (selectedCategory === "Suits" || selectedCategory === "Tuxedos") {
+        // If the selected category is a top-level category, filter by its subcategories
+        return filteredItems.filter((item) => {
+          const itemCategoryName = getCategoryByName(item.category);
+          return (
+            itemCategoryName &&
+            itemCategoryName
+              .toLowerCase()
+              .includes(selectedCategory.toLowerCase())
+          );
+        });
+      } else {
+        // If the selected category is a subcategory, filter directly by its name
+        return filteredItems.filter(
+          (item) =>
+            item.category &&
+            item.category.toLowerCase().includes(selectedCategory.toLowerCase())
+        );
+      }
     }
     return filteredItems;
-  }, [selectedCategory, filteredItems, getCategoryNameById]);
-  console.log("filteredItems:", filteredItems);
-
+  }, [selectedCategory, filteredItems, getCategoryByName]);
   return (
     <div>
       <div className="mb-3 sticky-lg-top">

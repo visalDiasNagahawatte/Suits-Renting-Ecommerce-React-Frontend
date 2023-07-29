@@ -5,7 +5,7 @@ const ItemCard = (props) => {
   console.log("Image URL:", props.img);
   return (
     <div class="col-lg-4 col-md-6 col-sm-6 d-flex">
-      <Link to={`/item/${props.id}`}>
+      <Link to={`/item/${encodeURIComponent(props.title)}`}>
         <div className="card w-100 my-2 shadow-2-strong">
           <img src={props.img} class="card-img-top" />
           <div class="card-body d-flex flex-column">

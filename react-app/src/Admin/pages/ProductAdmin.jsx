@@ -17,12 +17,26 @@ import "./ProductAdmin.css";
 import NavBar from "../../components/NavBar";
 import Footer from "../../components/Footer";
 import axios from "axios";
-import Form from "react-bootstrap/Form";
+
+const isValidUrl = (url) => {
+  // Regular expression to check URL format
+  const urlPattern = new RegExp(/^(ftp|http|https):\/\/[^ "]+$/, "i");
+  return urlPattern.test(url);
+};
 
 export default function ProductAdmin() {
   const [products, setProducts] = useState([]);
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [formValue, setFormValue] = useState({
+    title: "",
+    categoryId: "",
+    price: "",
+    inStock: "1",
+    description: "",
+    imgUrl: "",
+  });
+  const [formErrors, setFormErrors] = useState({});
 
   const toggleAddUserModal = () => {
     setIsAddUserModalOpen(!isAddUserModalOpen);
@@ -62,6 +76,16 @@ export default function ProductAdmin() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // Validate the form before submitting
+    const validationErrors = validateForm(formValue);
+    if (Object.keys(validationErrors).length > 0) {
+      setFormErrors(validationErrors);
+      return;
+    }
+
+    // If form is valid, clear any previous validation errors
+    setFormErrors({});
+
     const form = event.target;
     const formData = new FormData(form);
 
@@ -91,6 +115,53 @@ export default function ProductAdmin() {
       toggleAddUserModal();
     } catch (error) {
       console.error("Error adding product:", error);
+      // Handle the error, show an error message, etc.
+    }
+  };
+
+  const validateForm = (formData) => {
+    const errors = {};
+    if (!formData.title.trim()) {
+      errors.title = "Title is required.";
+    }
+    if (!formData.categoryId) {
+      errors.categoryId = "Category ID is required.";
+    }
+    if (!formData.price || isNaN(Number(formData.price))) {
+      errors.price = "Price must be a valid number.";
+    }
+    if (!formData.description.trim()) {
+      errors.description = "Description is required.";
+    }
+    if (!formData.imgUrl.trim()) {
+      errors.imgUrl = "Image URL is required.";
+    } else if (!isValidUrl(formData.imgUrl)) {
+      errors.imgUrl = "Invalid URL format.";
+    }
+    return errors;
+  };
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormValue((prevFormValue) => ({
+      ...prevFormValue,
+      [name]: value,
+    }));
+  };
+
+  const handleDeleteProduct = async (title) => {
+    try {
+      // Send the product title to the API endpoint for deletion
+      await axios.delete("http://localhost:8080/api/v1/product", {
+        params: {
+          title: title,
+        },
+      });
+
+      // Remove the deleted product from the products state
+      setProducts(products.filter((product) => product.title !== title));
+    } catch (error) {
+      console.error("Error deleting product:", error);
       // Handle the error, show an error message, etc.
     }
   };
@@ -130,7 +201,14 @@ export default function ProductAdmin() {
                               id="form3Example1"
                               label="Product Title"
                               name="title"
+                              value={formValue.title}
+                              onChange={onChange}
                             />
+                            {formErrors.title && (
+                              <div className="text-danger">
+                                {formErrors.title}
+                              </div>
+                            )}
                           </MDBCol>
                           <MDBCol>
                             <MDBInput
@@ -138,7 +216,14 @@ export default function ProductAdmin() {
                               type="number"
                               label="Category ID"
                               name="categoryId"
+                              value={formValue.categoryId}
+                              onChange={onChange}
                             />
+                            {formErrors.categoryId && (
+                              <div className="text-danger">
+                                {formErrors.categoryId}
+                              </div>
+                            )}
                           </MDBCol>
                         </MDBRow>
                         <MDBRow className="mb-4">
@@ -148,7 +233,14 @@ export default function ProductAdmin() {
                               type="number"
                               label="Price"
                               name="price"
+                              value={formValue.price}
+                              onChange={onChange}
                             />
+                            {formErrors.price && (
+                              <div className="text-danger">
+                                {formErrors.price}
+                              </div>
+                            )}
                           </MDBCol>
                           <MDBCol>
                             <select
@@ -156,6 +248,8 @@ export default function ProductAdmin() {
                               id="inStock"
                               name="inStock"
                               defaultValue="In Stock"
+                              value={formValue.inStock}
+                              onChange={onChange}
                             >
                               <option disabled value="">
                                 Product Status
@@ -165,20 +259,40 @@ export default function ProductAdmin() {
                             </select>
                           </MDBCol>
                         </MDBRow>
-                        <MDBInput
-                          wrapperClass="mb-4"
-                          textarea
-                          id="form3Example7"
-                          rows={4}
-                          label="Product Description"
-                          name="description"
-                        />
-                        <MDBInput
-                          wrapperClass="mb-4"
-                          id="form3Example10"
-                          label="Image URL"
-                          name="imgUrl"
-                        />
+                        <MDBRow className="mb-4">
+                          <MDBCol>
+                            <MDBInput
+                              textarea
+                              id="form3Example7"
+                              rows={4}
+                              label="Product Description"
+                              name="description"
+                              value={formValue.description}
+                              onChange={onChange}
+                            />
+                            {formErrors.description && (
+                              <div className="text-danger">
+                                {formErrors.description}
+                              </div>
+                            )}
+                          </MDBCol>
+                        </MDBRow>
+                        <MDBRow className="mb-4">
+                          <MDBCol>
+                            <MDBInput
+                              id="form3Example10"
+                              label="Image URL"
+                              name="imgUrl"
+                              value={formValue.imgUrl}
+                              onChange={onChange}
+                            />
+                            {formErrors.imgUrl && (
+                              <div className="text-danger">
+                                {formErrors.imgUrl}
+                              </div>
+                            )}
+                          </MDBCol>
+                        </MDBRow>
                       </form>
                     </MDBModalBody>
                     <MDBModalFooter>
@@ -227,7 +341,11 @@ export default function ProductAdmin() {
                           <button type="button" class="btn btn-success me-2">
                             Update
                           </button>
-                          <button type="button" class="btn btn-danger">
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            onClick={() => handleDeleteProduct(product.title)}
+                          >
                             Delete
                           </button>
                         </tr>
