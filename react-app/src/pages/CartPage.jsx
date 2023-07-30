@@ -3,6 +3,8 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useCart } from "react-use-cart";
 import axios from "axios"; // Import Axios
+import { useState, useEffect } from "react";
+import data from "../components/Data";
 
 function CartPage() {
   const { items, isEmpty, removeItem } = useCart(); // Access the items and removeItem functions from useCart hook
@@ -40,17 +42,6 @@ function CartPage() {
     }
   }
 
-  useEffect(() => {
-    axios
-      .get("/http://localhost:8080/api/v1/product") // Replace "/api/products" with your backend API endpoint for fetching products
-      .then((response) => {
-        setProductData(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-      });
-  }, []);
-
   return (
     <div>
       <div className="mb-5 sticky-lg-top">
@@ -81,7 +72,7 @@ function CartPage() {
                               <img
                                 src={item.image}
                                 className="border rounded me-3"
-                                style={{ width: "96px", height: "96px;" }}
+                                style={{ width: "140px", height: "200px" }}
                                 alt={item.title}
                               />
                               <div className="">

@@ -19,6 +19,8 @@ import CheckoutPage from "./pages/CheckoutPage";
 import UserAdmin from "./Admin/pages/UserAdmin";
 import ProductAdmin from "./Admin/pages/ProductAdmin";
 import OrderAdmin from "./Admin/pages/OrderAdmin";
+import CategoryAdmin from "./Admin/pages/CategoryAdmin";
+import CustomerAdmin from "./Admin/pages/CustomerAdmin";
 
 ReactDOM.render(
   <CartProvider>
@@ -40,6 +42,8 @@ ReactDOM.render(
           <Route path="/useradmin" element={<UserAdmin />} />
           <Route path="/productadmin" element={<ProductAdmin />} />
           <Route path="/orderadmin" element={<OrderAdmin />} />
+          <Route path="/categoryadmin" element={<CategoryAdmin />} />
+          <Route path="/customeradmin" element={<CustomerAdmin />} />
         </Routes>
       </BrowserRouter>
     </React.StrictMode>

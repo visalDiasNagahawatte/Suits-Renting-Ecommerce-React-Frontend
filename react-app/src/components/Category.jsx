@@ -5,7 +5,7 @@ const Category = ({ setSelectedCategory }) => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategoryState(category);
-    setSelectedCategory(category); // Pass the selected category back to the parent component
+    setSelectedCategory(category); // Pass the category name (string) to the parent component
   };
   return (
     <div class="col-lg-3">

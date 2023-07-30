@@ -12,14 +12,14 @@ import {
 export default function Homecards() {
   return (
     <div className="mb-5 ">
-      <MDBRow className="row-cols-6  g-4 d-flex justify-content-center">
-        <MDBCol>
+      <MDBRow className="g-4 d-flex justify-content-center">
+        <MDBCol lg="2" md="4">
           <MDBCard className="h-100">
             <MDBCardImage
-              src="/images/cards/3.jpg"
+              src="https://i.imgur.com/VGt7p47.jpg"
               alt="..."
               position="top"
-              style={{ height: "330px" }}
+              style={{ height: "300px", objectFit: "cover" }}
             />
             <MDBCardBody style={{ textAlign: "center" }}>
               <MDBCardTitle>Western Wedding Suits</MDBCardTitle>
@@ -31,13 +31,13 @@ export default function Homecards() {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-        <MDBCol>
+        <MDBCol lg="2" md="4">
           <MDBCard className="h-100">
             <MDBCardImage
-              src="/images/cards/4.jpeg"
+              src="https://i.imgur.com/0MoNi3N.jpg"
               alt="..."
               position="top"
-              style={{ height: "330px" }}
+              style={{ height: "300px", objectFit: "cover" }}
             />
             <MDBCardBody style={{ textAlign: "center" }}>
               <MDBCardTitle> Modern National Dresses</MDBCardTitle>
@@ -49,13 +49,13 @@ export default function Homecards() {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-        <MDBCol>
+        <MDBCol lg="2" md="4">
           <MDBCard className="h-100">
             <MDBCardImage
               src="/images/cards/2.jpg"
               alt="..."
               position="top"
-              style={{ height: "330px" }}
+              style={{ height: "300px", objectFit: "cover" }}
             />
             <MDBCardBody style={{ textAlign: "center" }}>
               <MDBCardTitle>Women's Formal Clothings</MDBCardTitle>
@@ -67,13 +67,13 @@ export default function Homecards() {
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
-        <MDBCol>
+        <MDBCol lg="2" md="4">
           <MDBCard className="h-100">
             <MDBCardImage
-              src="/images/cards/5.webp"
+              src="https://i.etsystatic.com/38954895/r/il/54de89/4411819115/il_1080xN.4411819115_89ma.jpg"
               alt="..."
               position="top"
-              style={{ height: "330px" }}
+              style={{ height: "300px", objectFit: "cover" }}
             />
             <MDBCardBody style={{ textAlign: "center" }}>
               <MDBCardTitle>Available in Kid Sizes</MDBCardTitle>

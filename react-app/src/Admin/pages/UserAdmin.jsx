@@ -72,66 +72,7 @@ const UserAdmin = () => {
           <div className="upper">
             <div className="main mt-5">
               <h3 className="header">USERS</h3>
-              <MDBBtn onClick={toggleAddUserModal}>Add Admin</MDBBtn>
-              <MDBModal show={isAddUserModalOpen} tabIndex="-1">
-                <MDBModalDialog>
-                  <MDBModalContent>
-                    <MDBModalHeader>
-                      <MDBModalTitle>Add Admin</MDBModalTitle>
-                      <MDBBtn
-                        className="btn-close"
-                        color="none"
-                        onClick={toggleAddUserModal}
-                      ></MDBBtn>
-                    </MDBModalHeader>
-                    <MDBModalBody>
-                      {/* Add your form or content for adding a new user here */}
-                      <form>
-                        <MDBRow className="mb-4">
-                          <MDBCol>
-                            <MDBInput
-                              id="form3Example1"
-                              label="First name"
-                              // value={firstName}
-                              // onChange={(e) => setFirstName(e.target.value)}
-                            />
-                          </MDBCol>
-                          <MDBCol>
-                            <MDBInput
-                              id="form3Example2"
-                              label="Last name"
-                              // value={lastName}
-                              // onChange={(e) => setLastName(e.target.value)}
-                            />
-                          </MDBCol>
-                        </MDBRow>
-                        <MDBInput
-                          className="mb-4"
-                          type="email"
-                          id="form3Example3"
-                          label="Email address"
-                          // value={email}
-                          // onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <MDBInput
-                          className="mb-4"
-                          type="password"
-                          id="form3Example4"
-                          label="Password"
-                          // value={password}
-                          // onChange={(e) => setPassword(e.target.value)}
-                        />
-                      </form>
-                    </MDBModalBody>
-                    <MDBModalFooter>
-                      <MDBBtn color="secondary" onClick={toggleAddUserModal}>
-                        Close
-                      </MDBBtn>
-                      <MDBBtn>Save changes</MDBBtn>
-                    </MDBModalFooter>
-                  </MDBModalContent>
-                </MDBModalDialog>
-              </MDBModal>
+
               {/* Rest of the table and other content */}
               <div className="table-container">
                 <table class="table">

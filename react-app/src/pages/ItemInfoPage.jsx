@@ -57,7 +57,7 @@ function ItemInfoPage() {
     setRentalDuration(event.target.value);
   };
 
-  const itemInCart = items.find((item) => item.id === selectedItem.id);
+  const itemInCart = items.find((item) => item.title === selectedItem.title);
 
   // Event handler to add the selected item to the cart
   const handleAddToCart = () => {
@@ -207,7 +207,7 @@ function ItemInfoPage() {
                       itemInCart ? "btn-success" : "btn-primary"
                     } shadow-0`}
                     onClick={handleAddToCart}
-                    disabled={!selectedItem.isInStock || itemInCart}
+                    disabled={!selectedItem.inStock || itemInCart}
                   >
                     <i className="me-1 fa fa-shopping-basket"></i> Add to cart
                   </button>

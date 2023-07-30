@@ -10,7 +10,7 @@ function ShopNowCard() {
     >
       <Card style={{ width: "50rem" }}>
         <Card.Img variant="top" src="/images/cards/wide_logo.jpg" />
-        <Card.Body style={{ textAlign: "center", backgroundColor: "#459cc3" }}>
+        <Card.Body style={{ textAlign: "center", backgroundColor: "white" }}>
           <Card.Title> Rent Your Perfect Outfit Now</Card.Title>
           <Card.Text>
             Find your ideal attire for any occasion with just a click!

@@ -41,42 +41,47 @@ function RentHomePage01() {
   }, []);
 
   const getCategoryByName = (categoryName) => {
-    const category = categories.find(
+    return categories.find(
       (cat) =>
-        cat.categoryName &&
-        cat.categoryName.toLowerCase() === categoryName.toLowerCase()
+        cat.description &&
+        cat.description.toLowerCase().includes(categoryName.toLowerCase())
     );
-    return category ? category.categoryId : null;
   };
 
   const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
+    setSelectedCategory(category); // Pass the category name (string) instead of the entire object
   };
 
   const itemsToDisplay = useMemo(() => {
     if (selectedCategory) {
-      if (selectedCategory === "Suits" || selectedCategory === "Tuxedos") {
+      const selectedCategoryObj = getCategoryByName(selectedCategory);
+
+      if (selectedCategoryObj) {
+        // If the selected category exists in the categories array, filter by its ID
+        return filteredItems.filter((item) => {
+          return item.categoryId === selectedCategoryObj.categoryId;
+        });
+      } else if (
+        selectedCategory.toLowerCase() === "suits" ||
+        selectedCategory.toLowerCase() === "tuxedos"
+      ) {
         // If the selected category is a top-level category, filter by its subcategories
         return filteredItems.filter((item) => {
-          const itemCategoryName = getCategoryByName(item.category);
+          // Check if the item's category name includes "Suits" or "Tuxedos"
           return (
-            itemCategoryName &&
-            itemCategoryName
-              .toLowerCase()
-              .includes(selectedCategory.toLowerCase())
+            item.category.toLowerCase().includes("suits") ||
+            item.category.toLowerCase().includes("tuxedos")
           );
         });
-      } else {
-        // If the selected category is a subcategory, filter directly by its name
-        return filteredItems.filter(
-          (item) =>
-            item.category &&
-            item.category.toLowerCase().includes(selectedCategory.toLowerCase())
-        );
       }
+      // If the selected category is neither in categories nor "Suits" or "Tuxedos"
+      return filteredItems;
     }
+
+    // If no category is selected, return all items
     return filteredItems;
   }, [selectedCategory, filteredItems, getCategoryByName]);
+
   return (
     <div>
       <div className="mb-3 sticky-lg-top">

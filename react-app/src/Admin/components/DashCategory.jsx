@@ -66,6 +66,24 @@ function DashCategory() {
                       <label htmlFor="jackets">Order Management</label>
                     </a>
                   </li>
+                  <li>
+                    <a
+                      href="/customeradmin"
+                      class=" text-dark"
+                      // onClick={() => handleCategoryClick(null)}
+                    >
+                      <label htmlFor="jackets">Customer Management</label>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/categoryadmin"
+                      class=" text-dark"
+                      // onClick={() => handleCategoryClick(null)}
+                    >
+                      <label htmlFor="jackets">Category Management</label>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Slides() {
   return (
-    <div className="mb-4">
+    <div className="mb-6">
       <Carousel>
         <Carousel.Item interval={2500}>
           <img

@@ -9,47 +9,47 @@ const AboutPage = () => {
       <div className="mb-1 sticky-lg-top">
         <NavBar></NavBar>
       </div>
-      <div className="row" style={{ margin: 0, padding: 0 }}>
-        <div className="image">
+      <div className="row " style={{ margin: 0, padding: 0 }}>
+        <div className="image mb-1">
           <h1 className="text">ABOUT US</h1>
         </div>
         <div className="left col-6">
           <h3 className="text1">Good Reputation</h3>
+          <br />
           <p className="text2">
-            “Suit & Tie by Raphael”, is a top ranked tailored suit boutiques in
-            Colombo that provides “Bespoke & Made to Measure” suits that fits
-            you perfectly. Full canvas, half canvas and fused suits are mastered
-            by our professional tailors. We offer the trendiest Italian cuts and
-            silhouettes in town. A wide range of the finest fabrics which are
-            sourced from Italy, England, Bangkok and Hong Kong are available at
-            our own design studio.
+            We at CEYLON EXECUTIVES offer a wide range of weddings suits for
+            men. Whether you are the groom, the best man or a wedding guest, you
+            have the opportunity to design the perfect fitting suit for
+            weddings. Choose the fabric, style and details and our tailors make
+            them made to measure for you. So you get to wear a suit that fully
+            expresses your personality and taste. We are conveniently located in
+            All our garments are tailor-made from scratch. After receiving your
+            order and product information, our tailors begin working to create
+            your piece. Our tailor handwrites your sizes over the fabrics before
+            cutting. No garment is the same as any other.
           </p>
         </div>
         <div className="right col-6">
           <div className="image2">
-            <img
-              src="https://www.suitandtie.lk/wp-content/uploads/elementor/thumbs/about-q91q6vyy1rfkyqfrjsd1yxeiw099pmvp2wfpmv3kq4.jpg"
-              alt=""
-            />
+            <img src="https://i.imgur.com/aSykobj.jpg" alt="" />
           </div>
         </div>
         <div className="div paragraph mb-5">
           <p className="text3">
-            We also offer the world’s best luxury fabric brands such as
-            Ermenegildo Zegna, Scabal, Reda, Donetella & Caccioppoli Napoli.
+            Choose from a range of fabrics and various details and design your
+            own outfit. We guarantee the perfect fit of your tailor-made suit.
           </p>
           <p className="text4">
-            Our suits are fully customized according to the customer
-            requirement. A wide range of linings and a host of custom details
-            such as the fit, lapel shape,
-            <br />
-            vents, pockets style & buttons can be chosen by our customers.
+            You can personalize everything from the choice of fabric, to the
+            buttons and pockets style, lining color, and even lapel withal of
+            your garments are created based on your specific preferences, fabric
+            selection and style
           </p>
           <p className="text5">
-            The attention of our professional designers & expert tailors who
-            will work with you to craft a suit so superb, it will last for years
-            to come. A sound <br></br>investment for your professional life, a
-            wedding or a formal occasion.
+            At Ceylon Executives we rely on the expertise of our skilled tailors
+            in order to deliver high quality products. In our tailoring we take
+            the reliability of measurements and fit of our garments to a
+            superior level.
           </p>
         </div>
       </div>
