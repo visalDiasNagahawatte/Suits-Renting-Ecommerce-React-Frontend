@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { CartProvider, useCart } from "react-use-cart";
@@ -11,10 +11,12 @@ function ItemInfoPage() {
   const [quantity, setQuantity] = useState(1); // Initialize the quantity state with 1
   const [rentalDuration, setRentalDuration] = useState("05 Days"); // Initialize the rental duration state with the default value
 
+  // Use the authentication context to check if the user is logged in
+
   const originalTitle = title.replace(/%|-|20/g, " ");
   console.log(originalTitle);
   // Use the useCart hook to access cart functionality
-  const { addItem, items } = useCart();
+  const { addItem, items, emptyCart } = useCart();
 
   useEffect(() => {
     // Fetch item data from the backend API based on the item's title
@@ -201,16 +203,22 @@ function ItemInfoPage() {
                       </select>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    className={`btn ${
-                      itemInCart ? "btn-success" : "btn-primary"
-                    } shadow-0`}
-                    onClick={handleAddToCart}
-                    disabled={!selectedItem.inStock || itemInCart}
-                  >
-                    <i className="me-1 fa fa-shopping-basket"></i> Add to cart
-                  </button>
+                  {isLoggedIn ? (
+                    // If the user is logged in, show the add to cart button
+                    <button
+                      type="button"
+                      className={`btn ${
+                        itemInCart ? "btn-success" : "btn-primary"
+                      } shadow-0`}
+                      onClick={handleAddToCart}
+                      disabled={!selectedItem.inStock || itemInCart}
+                    >
+                      <i className="me-1 fa fa-shopping-basket"></i> Add to cart
+                    </button>
+                  ) : (
+                    // If the user is not logged in, show a link to the login page
+                    <Link to="/login">Log in to add items to the cart</Link>
+                  )}
                 </div>
               </main>
             </div>

@@ -19,6 +19,8 @@ export default function SignupPage() {
     password: "",
   });
 
+  const [formErrors, setFormErrors] = useState("");
+
   const onChange = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.value });
   };
@@ -51,6 +53,17 @@ export default function SignupPage() {
       })
       .catch((error) => {
         console.error(error);
+
+        // Check for specific error types or status codes
+        if (error.response) {
+          // Axios received a response, but it's an error response with a status code
+          const { status, data } = error.response;
+
+          // Handle different error statuses and render appropriate text or UI components
+          if (data.code === 500) {
+            setFormErrors("email already exists");
+          }
+        }
       });
   }
 
@@ -81,6 +94,7 @@ export default function SignupPage() {
               />
             </MDBCol>
           </MDBRow>
+          {formErrors && <div className="text-danger">{formErrors}</div>}
           <MDBInput
             className="mb-4"
             name="email"
@@ -91,6 +105,7 @@ export default function SignupPage() {
             value={formValue.email}
             onChange={onChange}
           />
+
           <MDBInput
             className="mb-4"
             name="password"

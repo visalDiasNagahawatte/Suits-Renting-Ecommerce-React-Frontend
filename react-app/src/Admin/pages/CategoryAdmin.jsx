@@ -19,12 +19,19 @@ import {
 import "./UserAdmin.css";
 
 const CategoryAdmin = () => {
+  const [formValue, setFormValue] = useState({
+    categoryName: "",
+  });
   const [isAddCategoryModalOpen, setIsAddCategoryModalOpen] = useState(false);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [formErrors, setFormErrors] = useState({
+    categoryName: "",
+  });
+
   const toggleAddCategoryModal = () => {
-    setIsAddCategoryModalOpen(!isAddUserModalOpen);
+    setIsAddCategoryModalOpen(!isAddCategoryModalOpen);
   };
 
   useEffect(() => {
@@ -61,6 +68,56 @@ const CategoryAdmin = () => {
       });
   };
 
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Validate form fields before submission
+    const errors = {};
+    if (!formValue.categoryName) {
+      errors.categoryName = "Category name is required.";
+    }
+
+    // Update the formErrors state with the validation errors
+    setFormErrors(errors);
+
+    // If there are any validation errors, stop form submission
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
+    const categoryData = {
+      description: formValue.categoryName,
+    };
+
+    try {
+      // Send the customer data using the POST method
+      const response = await axios.post(
+        "http://localhost:8080/api/v1/category",
+        categoryData
+      );
+      console.log("Category added successfully:", response.data);
+
+      // Update the customers state with the new customer data
+      setCategories((prevCategories) => [...prevCategories, response.data]);
+      // Close the modal after successful addition
+      toggleAddCategoryModal();
+      // Reset the form fields after successful addition
+      setFormValue({
+        categoryName: "",
+      });
+    } catch (error) {
+      console.error("Error adding category:", error);
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValue((prevFormValue) => ({
+      ...prevFormValue,
+      [name]: value,
+    }));
+  };
+
   return (
     <div className="d-flex flex-column" style={{ minHeight: "100vh" }}>
       <div className="mb-3 sticky-lg-top">
@@ -88,41 +145,23 @@ const CategoryAdmin = () => {
                     </MDBModalHeader>
                     <MDBModalBody>
                       {/* Add your form or content for adding a new user here */}
-                      <form>
+                      <form onSubmit={handleFormSubmit} id="productForm">
                         <MDBRow className="mb-4">
                           <MDBCol>
                             <MDBInput
                               id="form3Example1"
-                              label="First name"
-                              // value={firstName}
-                              // onChange={(e) => setFirstName(e.target.value)}
+                              label="Category Name"
+                              name="categoryName"
+                              value={formValue.categoryName}
+                              onChange={handleChange}
                             />
-                          </MDBCol>
-                          <MDBCol>
-                            <MDBInput
-                              id="form3Example2"
-                              label="Last name"
-                              // value={lastName}
-                              // onChange={(e) => setLastName(e.target.value)}
-                            />
+                            {formErrors.categoryName && (
+                              <div className="text-danger">
+                                {formErrors.categoryName}
+                              </div>
+                            )}
                           </MDBCol>
                         </MDBRow>
-                        <MDBInput
-                          className="mb-4"
-                          type="email"
-                          id="form3Example3"
-                          label="Email address"
-                          // value={email}
-                          // onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <MDBInput
-                          className="mb-4"
-                          type="password"
-                          id="form3Example4"
-                          label="Password"
-                          // value={password}
-                          // onChange={(e) => setPassword(e.target.value)}
-                        />
                       </form>
                     </MDBModalBody>
                     <MDBModalFooter>
@@ -132,7 +171,9 @@ const CategoryAdmin = () => {
                       >
                         Close
                       </MDBBtn>
-                      <MDBBtn>Save changes</MDBBtn>
+                      <MDBBtn type="submit" form="productForm">
+                        Save changes
+                      </MDBBtn>
                     </MDBModalFooter>
                   </MDBModalContent>
                 </MDBModalDialog>

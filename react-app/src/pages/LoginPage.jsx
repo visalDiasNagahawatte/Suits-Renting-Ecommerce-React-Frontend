@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { MDBInput, MDBCol, MDBRow, MDBBtn } from "mdb-react-ui-kit";
 import Footer from "../components/Footer";
 import { adminCredentials } from "../components/Data";
+import { useDispatch } from "react-redux";
+import { login } from "../authSlice";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
 
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -23,6 +26,8 @@ function LoginPage() {
       [name]: value,
     });
   }
+
+  // Use the authentication context to access isLoggedIn state and setIsLoggedIn function
 
   function login(e) {
     e.preventDefault();
@@ -61,6 +66,9 @@ function LoginPage() {
         } else {
           navigateTo("/renthomepage01");
         }
+        // Reset the cart items after login
+        emptyCart();
+        dispatch(login());
       })
       .catch((error) => {
         console.error(error);

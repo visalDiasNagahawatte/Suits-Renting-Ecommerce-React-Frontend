@@ -21,31 +21,36 @@ import ProductAdmin from "./Admin/pages/ProductAdmin";
 import OrderAdmin from "./Admin/pages/OrderAdmin";
 import CategoryAdmin from "./Admin/pages/CategoryAdmin";
 import CustomerAdmin from "./Admin/pages/CustomerAdmin";
+import { Provider } from "react-redux";
+import store from "./store";
 
 ReactDOM.render(
   <CartProvider>
     <React.StrictMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}></Route>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/weddings" element={<WeddingPage />} />
-          <Route path="/renthomepage01" element={<RentHomePage01 />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/weddings" element={<WeddingPage />} />
-          <Route path="/item/:title" element={<ItemInfoPage />} />
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/checkoutpage" element={<CheckoutPage />} />
-          <Route path="/useradmin" element={<UserAdmin />} />
-          <Route path="/productadmin" element={<ProductAdmin />} />
-          <Route path="/orderadmin" element={<OrderAdmin />} />
-          <Route path="/categoryadmin" element={<CategoryAdmin />} />
-          <Route path="/customeradmin" element={<CustomerAdmin />} />
-        </Routes>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/renthomepage01" element={<RentHomePage01 />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/weddings" element={<WeddingPage />} />
+            <Route path="/item/:title" element={<ItemInfoPage />} />
+
+            <Route path="/cart" element={<CartPage />} />
+
+            <Route path="/checkoutpage" element={<CheckoutPage />} />
+            <Route path="/useradmin" element={<UserAdmin />} />
+            <Route path="/productadmin" element={<ProductAdmin />} />
+            <Route path="/orderadmin" element={<OrderAdmin />} />
+            <Route path="/categoryadmin" element={<CategoryAdmin />} />
+            <Route path="/customeradmin" element={<CustomerAdmin />} />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
     </React.StrictMode>
   </CartProvider>,
   document.getElementById("root")
