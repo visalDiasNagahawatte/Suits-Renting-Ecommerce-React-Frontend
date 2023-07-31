@@ -10,8 +10,13 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector } from "react-redux";
 
 export default function SignupPage() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const [formValue, setFormValue] = useState({
     firstName: "",
     lastName: "",
@@ -29,6 +34,18 @@ export default function SignupPage() {
 
   const handleSignup = (e) => {
     e.preventDefault();
+    if (isLoggedIn) {
+      toast.error("Logout first", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return; // Exit the function early, don't proceed with signup
+    }
 
     // Combine first name and last name
     const userName = `${formValue.firstName} ${formValue.lastName}`;

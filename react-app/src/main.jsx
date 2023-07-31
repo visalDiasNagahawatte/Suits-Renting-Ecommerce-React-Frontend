@@ -23,6 +23,8 @@ import CategoryAdmin from "./Admin/pages/CategoryAdmin";
 import CustomerAdmin from "./Admin/pages/CustomerAdmin";
 import { Provider } from "react-redux";
 import store from "./store";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.render(
   <CartProvider>
@@ -39,9 +41,7 @@ ReactDOM.render(
             <Route path="/about" element={<AboutPage />} />
             <Route path="/weddings" element={<WeddingPage />} />
             <Route path="/item/:title" element={<ItemInfoPage />} />
-
             <Route path="/cart" element={<CartPage />} />
-
             <Route path="/checkoutpage" element={<CheckoutPage />} />
             <Route path="/useradmin" element={<UserAdmin />} />
             <Route path="/productadmin" element={<ProductAdmin />} />
@@ -50,6 +50,7 @@ ReactDOM.render(
             <Route path="/customeradmin" element={<CustomerAdmin />} />
           </Routes>
         </BrowserRouter>
+        <ToastContainer />
       </Provider>
     </React.StrictMode>
   </CartProvider>,

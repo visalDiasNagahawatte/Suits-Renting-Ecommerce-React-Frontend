@@ -5,8 +5,46 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { MDBBtn, MDBBadge, MDBIcon } from "mdb-react-ui-kit";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../authSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useCart } from "react-use-cart";
 
 function NavBar() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+
+  const { emptyCart } = useCart(); // Access the items and removeItem functions from useCart hook
+
+  // Event handler for logout
+  const handleLogout = () => {
+    // Dispatch the logout action to set isLoggedIn to false
+    dispatch(logout());
+    emptyCart();
+    // Clear isLoggedIn from local storage
+    localStorage.removeItem("isLoggedIn");
+  };
+
+  // Event handler for Sign Up button
+  const handleSignUp = () => {
+    if (isLoggedIn) {
+      // Prevent the default link behavior
+      // e.preventDefault();
+      // Show the "Logout first" notification if user is logged in
+      toast.error("Logout first", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      navigateTo("/signup");
+    }
+  };
   return (
     <div className="sticky-lg-top">
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -22,6 +60,7 @@ function NavBar() {
             Ceylon Executives
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
+
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0 "
@@ -47,9 +86,23 @@ function NavBar() {
             </Link>
 
             <Form className="d-flex ">
-              <Link to={"/login"}>
-                <MDBBtn className="me-2">Login</MDBBtn>
-              </Link>
+              <div>
+                {/* Render Logout button when isLoggedIn is true */}
+                {isLoggedIn && (
+                  <Link to={"/renthomepage01"}>
+                    <MDBBtn onClick={handleLogout} className="me-2">
+                      Logout
+                    </MDBBtn>
+                  </Link>
+                )}
+              </div>
+
+              {/* Render Log In button when isLoggedIn is false */}
+              {!isLoggedIn && (
+                <Link to={"/login"}>
+                  <MDBBtn className="me-2">Login</MDBBtn>
+                </Link>
+              )}
 
               <Link to={"/signup"}>
                 <MDBBtn className="me-2">Signup</MDBBtn>

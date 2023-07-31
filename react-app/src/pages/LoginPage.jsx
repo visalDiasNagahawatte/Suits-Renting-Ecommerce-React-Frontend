@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { adminCredentials } from "../components/Data";
 import { useDispatch } from "react-redux";
 import { login } from "../authSlice";
+import { useCart } from "react-use-cart";
 
 function LoginPage() {
   const [formData, setFormData] = useState({
@@ -14,10 +15,11 @@ function LoginPage() {
     password: "",
   });
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
+
+  const { items, isEmpty, removeItem, emptyCart } = useCart(); // Access the items and removeItem functions from useCart hook
 
   const [errorMessage, setErrorMessage] = useState("");
-
-  const navigateTo = useNavigate();
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -29,7 +31,7 @@ function LoginPage() {
 
   // Use the authentication context to access isLoggedIn state and setIsLoggedIn function
 
-  function login(e) {
+  function handleLogin(e) {
     e.preventDefault();
 
     // Destructure the email and password from formData
@@ -66,9 +68,13 @@ function LoginPage() {
         } else {
           navigateTo("/renthomepage01");
         }
+        // Dispatch the login action with the user data as payload
+        dispatch(login(response.data)); // Assuming that the response.data contains the user data
+
         // Reset the cart items after login
         emptyCart();
-        dispatch(login());
+        // Store isLoggedIn in local storage
+        localStorage.setItem("isLoggedIn", true);
       })
       .catch((error) => {
         console.error(error);
@@ -113,7 +119,7 @@ function LoginPage() {
 
           <MDBRow className="mb-4">
             <MDBCol className="d-flex justify-content-center">
-              <MDBBtn type="button" className="mb-4" onClick={login}>
+              <MDBBtn type="button" className="mb-4" onClick={handleLogin}>
                 Log in
               </MDBBtn>
             </MDBCol>

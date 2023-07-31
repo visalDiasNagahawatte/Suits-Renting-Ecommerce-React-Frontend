@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ItemCard from "../components/ItemCard";
 import Category from "../components/Category";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function RentHomePage01() {
   const [selectedCategory, setSelectedCategory] = useState(null);

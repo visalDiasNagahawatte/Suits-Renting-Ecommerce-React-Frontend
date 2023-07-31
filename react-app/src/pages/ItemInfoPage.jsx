@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import { CartProvider, useCart } from "react-use-cart";
+import { useCart } from "react-use-cart";
 import axios from "axios";
 
 function ItemInfoPage() {
@@ -10,6 +11,9 @@ function ItemInfoPage() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [quantity, setQuantity] = useState(1); // Initialize the quantity state with 1
   const [rentalDuration, setRentalDuration] = useState("05 Days"); // Initialize the rental duration state with the default value
+
+  // Use the useSelector hook to access the isLoggedIn state from the Redux store
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   // Use the authentication context to check if the user is logged in
 
@@ -27,13 +31,15 @@ function ItemInfoPage() {
         },
       })
       .then((response) => {
+        console.log(response.data);
         const selectedItem = response.data.data; // Get the item data from the 'data' property of the response
         setSelectedItem(selectedItem);
+        console.log(selectedItem);
       })
       .catch((error) => {
         console.error("Error fetching item data:", error);
       });
-  }, [originalTitle]); // Use originalTitle here, assuming it holds the value of the title you want to fetch
+  }, []); // Use originalTitle here, assuming it holds the value of the title you want to fetch
 
   // Check if selectedItem is not defined yet (e.g., while fetching the data)
   if (!selectedItem) {

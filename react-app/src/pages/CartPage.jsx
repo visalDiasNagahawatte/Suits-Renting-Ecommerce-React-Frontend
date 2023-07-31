@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import data from "../components/Data";
 
 function CartPage() {
-  const { items, isEmpty, removeItem } = useCart(); // Access the items and removeItem functions from useCart hook
+  const { items, isEmpty, removeItem, emptyCart } = useCart(); // Access the items and removeItem functions from useCart hook
   // if (isEmpty) return <p>Your cart is empty</p>;
   const [productData, setProductData] = useState([]);
   // Calculate the total price of all items in the cart
