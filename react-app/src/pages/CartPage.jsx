@@ -4,13 +4,13 @@ import Footer from "../components/Footer";
 import { useCart } from "react-use-cart";
 import axios from "axios"; // Import Axios
 import { useState, useEffect } from "react";
-import data from "../components/Data";
+import { Link } from "react-router-dom";
 
 function CartPage() {
   const { items, isEmpty, removeItem, emptyCart } = useCart(); // Access the items and removeItem functions from useCart hook
   // if (isEmpty) return <p>Your cart is empty</p>;
   const [productData, setProductData] = useState([]);
-  // Calculate the total price of all items in the cart
+
   const total = items.reduce(
     (acc, item) =>
       acc +
@@ -131,13 +131,13 @@ function CartPage() {
                   <div className="border-top pt-4 mx-4 mb-4">
                     <p>
                       <i className="fas fa-truck text-muted fa-lg"></i> Free
-                      Delivery within 1-2 weeks
+                      Delivery within 1 weeks
                     </p>
                     <p className="text-muted">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                      ullamco laboris nisi ut aliquip
+                      With Cash on Delivery (COD), you can place an order for
+                      renting suits online and choose to make the payment in
+                      cash when the order is delivered to your specified
+                      address.
                     </p>
                   </div>
                 </div>
@@ -149,14 +149,14 @@ function CartPage() {
                   <div className="card-body">
                     {isEmpty ? (
                       <div>
-                        <div className="d-flex justify-content-between">
+                        {/* <div className="d-flex justify-content-between">
                           <p className="mb-2">Total price:</p>
                           <p className="mb-2">Rs. 0.00</p>
                         </div>
                         <div className="d-flex justify-content-between">
-                          <p className="mb-2">TAX:</p>
+                          <p className="mb-2">Delivery :</p>
                           <p className="mb-2">Rs. 0.00</p>
-                        </div>
+                        </div> */}
                         <hr />
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Total price:</p>
@@ -165,7 +165,7 @@ function CartPage() {
                       </div>
                     ) : (
                       <div>
-                        <div className="d-flex justify-content-between">
+                        {/* <div className="d-flex justify-content-between">
                           <p className="mb-2">Total price:</p>
                           <p className="mb-2">Rs. {total.toFixed(2)}</p>
                         </div>
@@ -174,25 +174,26 @@ function CartPage() {
                           <p className="mb-2">
                             RS. {data.taxAmount.toFixed(2)}
                           </p>
-                        </div>
+                        </div> */}
                         <hr />
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Total price:</p>
-                          <p className="mb-2 fw-bold">
-                            Rs. {(total + data.taxAmount).toFixed(2)}
-                          </p>
+                          <p className="mb-2 fw-bold">Rs. {total.toFixed(2)}</p>
                         </div>
                       </div>
                     )}
                     <div className="mt-3">
                       {!isEmpty && (
-                        <a
-                          href="/checkoutpage"
-                          className="btn btn-success w-100 shadow-0 mb-2"
+                        <Link
+                          to={{
+                            pathname: "/checkoutpage",
+                            state: { total },
+                          }}
                         >
-                          {" "}
-                          Proceed to Checkout{" "}
-                        </a>
+                          <button className="btn btn-success w-100 shadow-0 mb-2">
+                            Proceed to Checkout
+                          </button>
+                        </Link>
                       )}
                       <a
                         href="renthomepage01"

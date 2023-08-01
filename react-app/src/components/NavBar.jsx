@@ -26,25 +26,6 @@ function NavBar() {
     localStorage.removeItem("isLoggedIn");
   };
 
-  // Event handler for Sign Up button
-  const handleSignUp = () => {
-    if (isLoggedIn) {
-      // Prevent the default link behavior
-      // e.preventDefault();
-      // Show the "Logout first" notification if user is logged in
-      toast.error("Logout first", {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
-    } else {
-      navigateTo("/signup");
-    }
-  };
   return (
     <div className="sticky-lg-top">
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -108,7 +89,7 @@ function NavBar() {
                 <MDBBtn className="me-2">Signup</MDBBtn>
               </Link>
 
-              <Form.Control
+              {/* <Form.Control
                 type="search"
                 placeholder="Search"
                 className="me-2"
@@ -116,7 +97,7 @@ function NavBar() {
               />
               <Link to={"/"}>
                 <MDBBtn className="me-2">Search</MDBBtn>
-              </Link>
+              </Link> */}
             </Form>
           </Navbar.Collapse>
         </Container>

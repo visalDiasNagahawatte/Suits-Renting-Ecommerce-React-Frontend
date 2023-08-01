@@ -9,6 +9,7 @@ import {
 } from "mdb-react-ui-kit";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import "./ContactPage.css";
 
 export default function ContactPage() {
   return (
@@ -22,40 +23,26 @@ export default function ContactPage() {
           <MDBRow>
             <MDBCol size="md">
               <div>
-                <p>Contact information email : info@ceylonexecutives.com.lk</p>{" "}
                 <p>
-                  Address: No: 666, Old Galle Road, Horethuduwa, Moratuwa, Sri
-                  Lanka
+                  <b>Contact information</b> <br />
+                  <br />
+                  <b> email :</b> info@ceylonexecutives.com.lk
+                </p>{" "}
+                <p>
+                  <b>Address:</b> No: 666, Old Galle Road, Horethuduwa,
+                  Moratuwa, Sri Lanka
                 </p>
-                <p>Hot line : 0779293915</p>
+                <p>
+                  <b>Hot line :</b> 0779293915
+                </p>
               </div>
             </MDBCol>
-            <MDBCol className="d-flex" size="md">
-              <form>
-                <MDBInput id="form4Example1" wrapperClass="mb-4" label="Name" />
-                <MDBInput
-                  type="email"
-                  id="form4Example2"
-                  wrapperClass="mb-4"
-                  label="Email address"
-                />
-                <MDBInput
-                  wrapperClass="mb-4"
-                  textarea
-                  id="form4Example3"
-                  rows={4}
-                  label="Message"
-                />
-                <MDBCheckbox
-                  wrapperClass="d-flex justify-content-center mb-4"
-                  id="form4Example4"
-                  label="Send me a copy of this message"
-                  defaultChecked
-                />
-                <MDBBtn type="submit" className="mb-4" block>
-                  SEND MESSAGE
-                </MDBBtn>
-              </form>
+            <MDBCol>
+              <img
+                src="/images/ce_map.png"
+                alt=""
+                style={{ maxWidth: "500px" }}
+              />
             </MDBCol>
           </MDBRow>
         </MDBContainer>

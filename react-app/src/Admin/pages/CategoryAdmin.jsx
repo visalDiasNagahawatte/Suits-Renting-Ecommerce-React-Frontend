@@ -50,7 +50,7 @@ const CategoryAdmin = () => {
 
   const handleDeleteCategory = (description) => {
     axios
-      .delete("http://localhost:8080/api/v1/user", {
+      .delete("http://localhost:8080/api/v1/category", {
         params: {
           description: description,
         },
@@ -86,6 +86,7 @@ const CategoryAdmin = () => {
     }
 
     const categoryData = {
+      categoryId: 0,
       description: formValue.categoryName,
     };
 

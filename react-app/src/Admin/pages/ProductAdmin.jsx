@@ -25,14 +25,16 @@ const isValidUrl = (url) => {
 };
 
 export default function ProductAdmin() {
+  const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [isAddUserModalOpen, setIsAddUserModalOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [formValue, setFormValue] = useState({
     title: "",
-    categoryId: "",
+    stockQty: "",
     price: "",
     inStock: "1",
+    categoryDTO: "",
     description: "",
     imgUrl: "",
   });
@@ -43,34 +45,56 @@ export default function ProductAdmin() {
   };
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(
+        const productResponse = await axios.get(
           "http://localhost:8080/api/v1/product"
         );
-        console.log("products response:", response.data);
+        console.log("products response:", productResponse.data);
 
         // Check if the response is an array and not empty
         if (
-          Array.isArray(response.data.data) &&
-          response.data.data.length > 0
+          Array.isArray(productResponse.data.data) &&
+          productResponse.data.data.length > 0
         ) {
-          setProducts(response.data.data);
+          setProducts(productResponse.data.data);
         } else {
           // If the response is not an array or empty, handle the error
-          console.error("Error: The API response is not an array or empty.");
+          console.error(
+            "Error: The product API response is not an array or empty."
+          );
           setProducts([]);
         }
+
+        const categoryResponse = await axios.get(
+          "http://localhost:8080/api/v1/category"
+        );
+        console.log("categories response:", categoryResponse.data);
+
+        // Check if the response is an array and not empty
+        if (
+          Array.isArray(categoryResponse.data.data) &&
+          categoryResponse.data.data.length > 0
+        ) {
+          setCategories(categoryResponse.data.data);
+        } else {
+          // If the response is not an array or empty, handle the error
+          console.error(
+            "Error: The category API response is not an array or empty."
+          );
+          setCategories([]);
+        }
       } catch (error) {
-        console.error("Error fetching products:", error);
-        // Handle the error, set products to an empty array
+        console.error("Error fetching data:", error);
+        // Handle the error, set products and categories to empty arrays
         setProducts([]);
+        setCategories([]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchProducts();
+    fetchData(); // Call the function to fetch products and categories
   }, []);
 
   const handleFormSubmit = async (event) => {
@@ -89,13 +113,25 @@ export default function ProductAdmin() {
     const form = event.target;
     const formData = new FormData(form);
 
+    const categoryId = formData.get("categoryDTO"); // Get the selected categoryId from the form data
+
+    // Find the selected category object from the categories state
+    const selectedCategory = categories.find(
+      (category) => category.categoryId === Number(categoryId)
+    );
+
+    if (!selectedCategory) {
+      console.error("Error: Selected category not found.");
+      return;
+    }
+
     const productData = {
-      categoryId: Number(formData.get("categoryId")),
+      categoryDTO: selectedCategory,
       description: formData.get("description"),
       imgUrl: formData.get("imgUrl"),
       inStock: formData.get("inStock") === "1",
       price: Number(formData.get("price")),
-
+      stockQty: Number(formData.get("stockQty")),
       title: formData.get("title"),
     };
 
@@ -124,11 +160,14 @@ export default function ProductAdmin() {
     if (!formData.title.trim()) {
       errors.title = "Title is required.";
     }
-    if (!formData.categoryId) {
-      errors.categoryId = "Category ID is required.";
+    if (!formData.categoryDTO) {
+      errors.categoryDTO = "Category ID is required.";
     }
     if (!formData.price || isNaN(Number(formData.price))) {
       errors.price = "Price must be a valid number.";
+    }
+    if (!formData.stockQty || isNaN(Number(formData.stockQty))) {
+      errors.stockQty = "Quantity must be a valid number.";
     }
     if (!formData.description.trim()) {
       errors.description = "Description is required.";
@@ -212,18 +251,19 @@ export default function ProductAdmin() {
                           </MDBCol>
                           <MDBCol>
                             <MDBInput
-                              id="form3Example2"
+                              id="form3Example34"
                               type="number"
-                              label="Category ID"
-                              name="categoryId"
-                              value={formValue.categoryId}
+                              label="Stock Quantity"
+                              name="stockQty"
+                              value={formValue.stockQty}
                               onChange={onChange}
                             />
-                            {formErrors.categoryId && (
+                            {formErrors.stockQty && (
                               <div className="text-danger">
-                                {formErrors.categoryId}
+                                {formErrors.stockQty}
                               </div>
                             )}
+                            {/* Show the categories in the combo box (select input) */}
                           </MDBCol>
                         </MDBRow>
                         <MDBRow className="mb-4">
@@ -257,6 +297,31 @@ export default function ProductAdmin() {
                               <option value="1">In Stock</option>
                               <option value="0">Out of Stock</option>
                             </select>
+                          </MDBCol>
+                        </MDBRow>
+                        <MDBRow className="mb-4">
+                          <MDBCol>
+                            <select
+                              className="form-select"
+                              label="Category"
+                              name="categoryDTO"
+                              value={formValue.categoryDTO}
+                              onChange={onChange}
+                            >
+                              {categories.map((category) => (
+                                <option
+                                  key={category.categoryId}
+                                  value={category.categoryId}
+                                >
+                                  {category.description}
+                                </option>
+                              ))}
+                            </select>
+                            {formErrors.categoryDTO && (
+                              <div className="text-danger">
+                                {formErrors.categoryDTO}
+                              </div>
+                            )}
                           </MDBCol>
                         </MDBRow>
                         <MDBRow className="mb-4">
@@ -328,7 +393,7 @@ export default function ProductAdmin() {
                         <tr key={product.productId}>
                           <th scope="row">{product.productId}</th>
                           <td>{product.title}</td>
-                          <td>{product.categoryId}</td>
+                          <td>{product.categoryDTO}</td>
                           <td>RS. {product.price}/-</td>
 
                           <td

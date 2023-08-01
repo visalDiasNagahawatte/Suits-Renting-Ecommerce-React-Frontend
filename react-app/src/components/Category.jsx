@@ -1,35 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 
-const Category = ({ setSelectedCategory }) => {
-  const [selectedCategory, setSelectedCategoryState] = useState(null);
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategoryState(category);
-    setSelectedCategory(category); // Pass the category name (string) to the parent component
+const Category = ({ selectedCategory, setSelectedCategory, categories }) => {
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
-  return (
-    <div class="col-lg-3">
-      <button
-        class="btn btn-outline-secondary mb-3 w-100 d-lg-none"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span>Show filter</span>
-      </button>
 
-      <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
+  return (
+    <div className="col-lg-3">
+      {/* ... (rest of the code) */}
+      <div
+        className="collapse card d-lg-block mb-5"
+        id="navbarSupportedContent"
+      >
         <div
-          class="accordion position-fixed"
+          className="accordion position-fixed"
           id="accordionPanelsStayOpenExample"
         >
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne">
+          <div className="accordion-item">
+            <h2 className="accordion-header" id="headingOne">
               <button
-                class="accordion-button text-dark bg-light"
+                className="accordion-button text-dark bg-light"
                 type="button"
                 data-mdb-toggle="collapse"
                 data-mdb-target="#panelsStayOpen-collapseOne"
@@ -41,107 +31,27 @@ const Category = ({ setSelectedCategory }) => {
             </h2>
             <div
               id="panelsStayOpen-collapseOne"
-              class="accordion-collapse collapse show"
+              className="accordion-collapse collapse show"
               aria-labelledby="headingOne"
             >
-              <div class=" accordion-body ">
-                <ul>
-                  <li>
-                    <a
-                      href="/renthomepage01"
-                      class=" text-dark"
-                      onClick={() => handleCategoryClick(null)}
+              <div className="accordion-body">
+                <label htmlFor="categories">Choose a category:</label>
+                <select
+                  id="categories"
+                  className="form-select"
+                  value={selectedCategory}
+                  onChange={handleCategoryChange}
+                >
+                  <option value={null}>All Categories</option>
+                  {categories.map((category) => (
+                    <option
+                      key={category.categoryId}
+                      value={category.description}
                     >
-                      <label htmlFor="jackets">Suits & Tuxedos</label>
-                    </a>
-                    <ul>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-dark"
-                          onClick={() => handleCategoryClick("Suits")}
-                        >
-                          Suits
-                        </a>
-                        <ul>
-                          <li>
-                            <a
-                              href="#"
-                              class="text-dark"
-                              onClick={() => handleCategoryClick("Black Suits")}
-                            >
-                              Black Suits
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              class="text-dark"
-                              onClick={() => handleCategoryClick("Blue Suits")}
-                            >
-                              Blue Suits
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              class="text-dark"
-                              onClick={() =>
-                                handleCategoryClick("Various Colors Suits")
-                              }
-                            >
-                              Various Colors Suits
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="text-dark"
-                          onClick={() => handleCategoryClick("Tuxedos")}
-                        >
-                          Tuxedos{" "}
-                        </a>
-                        <ul>
-                          <li>
-                            <a
-                              href="#"
-                              class="text-dark"
-                              onClick={() =>
-                                handleCategoryClick("Black Tuxedos")
-                              }
-                            >
-                              Black Tuxedos
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              class="text-dark"
-                              onClick={() =>
-                                handleCategoryClick("Blue Tuxedos")
-                              }
-                            >
-                              Blue Tuxedos
-                            </a>
-                          </li>
-                          <li>
-                            <a
-                              href="#"
-                              class="text-dark"
-                              onClick={() =>
-                                handleCategoryClick("Various Colors Tuxedos")
-                              }
-                            >
-                              Various Colors Tuxedos
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                      {category.description}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>
@@ -150,4 +60,5 @@ const Category = ({ setSelectedCategory }) => {
     </div>
   );
 };
+
 export default Category;

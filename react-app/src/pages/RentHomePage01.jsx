@@ -8,7 +8,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 function RentHomePage01() {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [filteredItems, setFilteredItems] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true); // New loading state
@@ -41,47 +41,35 @@ function RentHomePage01() {
       });
   }, []);
 
-  const getCategoryByName = (categoryName) => {
-    return categories.find(
-      (cat) =>
-        cat.description &&
-        cat.description.toLowerCase().includes(categoryName.toLowerCase())
-    );
+  const getCategoryById = (categoryId) => {
+    return categories.find((cat) => cat.categoryId === categoryId);
   };
 
   const handleCategoryChange = (category) => {
+    console.log("Selected Category:", category);
     setSelectedCategory(category); // Pass the category name (string) instead of the entire object
   };
 
   const itemsToDisplay = useMemo(() => {
     if (selectedCategory) {
-      const selectedCategoryObj = getCategoryByName(selectedCategory);
+      if (selectedCategory === "All Categories") {
+        // If the selected category is "All Categories", return all items
+        return filteredItems;
+      } else {
+        // Filter items based on the selected category name (using productId)
+        const selectedCategoryId = categories.find(
+          (cat) => cat.title === selectedCategory
+        )?.categoryId;
 
-      if (selectedCategoryObj) {
-        // If the selected category exists in the categories array, filter by its ID
-        return filteredItems.filter((item) => {
-          return item.categoryId === selectedCategoryObj.categoryId;
-        });
-      } else if (
-        selectedCategory.toLowerCase() === "suits" ||
-        selectedCategory.toLowerCase() === "tuxedos"
-      ) {
-        // If the selected category is a top-level category, filter by its subcategories
-        return filteredItems.filter((item) => {
-          // Check if the item's category name includes "Suits" or "Tuxedos"
-          return (
-            item.category.toLowerCase().includes("suits") ||
-            item.category.toLowerCase().includes("tuxedos")
-          );
-        });
+        return filteredItems.filter(
+          (item) => item.categoryDTO?.categoryId === selectedCategoryId
+        );
       }
-      // If the selected category is neither in categories nor "Suits" or "Tuxedos"
-      return filteredItems;
     }
 
     // If no category is selected, return all items
     return filteredItems;
-  }, [selectedCategory, filteredItems, getCategoryByName]);
+  }, [selectedCategory, filteredItems, categories]);
 
   return (
     <div>
@@ -94,8 +82,9 @@ function RentHomePage01() {
             <div class="row">
               <Category
                 selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-              ></Category>
+                setSelectedCategory={handleCategoryChange}
+                categories={categories}
+              />
 
               <div class="col-lg-9">
                 <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
